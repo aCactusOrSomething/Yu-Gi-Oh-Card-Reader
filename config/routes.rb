@@ -7,8 +7,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  root to: redirect('/home')
 
   get 'home', to: 'pages#home', as: 'home'
   get '/cards', to: 'cards#index', as: 'cards'
-  get '/cards/:id', to: 'cards#show', as: 'card'
+  get '/cards/:card_id', to: 'cards#show', as: 'card'
 end

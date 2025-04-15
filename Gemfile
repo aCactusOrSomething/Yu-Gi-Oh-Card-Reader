@@ -82,3 +82,6 @@ gem 'bootstrap_form', '~> 5.2.3'
 
 # Cohesive themes using Bootstrap styles
 gem 'bootswatch', github: 'thomaspark/bootswatch', tag: 'v5.2.3'
+
+# API requests
+gem 'httparty'

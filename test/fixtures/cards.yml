@@ -1,0 +1,50 @@
+# == Schema Information
+#
+# Table name: cards
+#
+#  atk            :integer
+#  card_attribute :string
+#  card_type      :string           not null
+#  def            :integer
+#  desc           :string           not null
+#  frameType      :string           not null
+#  level          :integer
+#  linkmarkers    :string
+#  linkval        :integer
+#  name           :string           not null
+#  race           :string
+#  scale          :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  card_id        :integer          not null, primary key
+#
+
+one:
+  card_id: 1
+  name: MyString
+  card_type: MyString
+  frameType: MyString
+  desc: MyString
+  atk: 1
+  def: 1
+  race: MyString
+  card_attribute: MyString
+  scale: 1
+  linkval: 1
+  linkmarkers: MyString
+  level: 1
+
+two:
+  card_id: 1
+  name: MyString
+  card_type: MyString
+  frameType: MyString
+  desc: MyString
+  atk: 1
+  def: 1
+  race: MyString
+  card_attribute: MyString
+  scale: 1
+  linkval: 1
+  linkmarkers: MyString
+  level: 1

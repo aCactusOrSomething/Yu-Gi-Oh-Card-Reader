@@ -1,0 +1,40 @@
+<nav class="searchbar">
+  <input name="searchbox" id="searchbox" placeholder="Card Name" value="<%= @card.name %>"></input>
+  <input type="button" id="submitButton" onclick="run()" value="Search" />
+</nav>
+
+<article id="card" class="frametype-<%= @card.frameType%>" >
+  <h3><%= @card.name %></h3>
+
+  <!-- first, check if this is a monster, spell, or trap-->
+  <% if @card.monster? %>
+  
+    <% if @card.race != nil and @card.card_attribute != nil %>
+      <div><%= @card.card_attribute %> <%= @card.race %></div>
+    <% end %>
+    
+    <% if @card.level != nil %>
+      <div>Level: <%= @card.level %></div>
+    <% end %>
+
+    <% if @card.linkval != 0 %>
+      <div>Link Rating: <%= @card.linkval %></div>
+    <% end %>
+
+    <% if @card.atk != nil %>
+      <div>Attack: <%= @card.atk %></div>
+    <% end %>
+
+    <% if @card.def != nil %>
+      <div>Defense: <%= @card.def %></div>
+    <% end %>
+  
+  <% end %>
+  
+  <section class="outputContainer"><%= @card.desc %></section>
+</article>
+<footer>
+  <i>The database used for card data is maintained by YGOProDeck.com.</i>
+</footer>
+
+<%= javascript_include_tag 'main_card' %>

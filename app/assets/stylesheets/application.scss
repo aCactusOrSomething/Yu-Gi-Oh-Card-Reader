@@ -19,6 +19,9 @@
 
 @import "rails_bootstrap_forms";
 
+// atkinson hyperlegible font
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 
 label.required:after {
   content:" *";
@@ -26,4 +29,127 @@ label.required:after {
 
 main {
   margin-top: 20px;
+}
+
+.atkinson-hyperlegible-regular,
+body {
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  padding: 10px;
+}
+
+.atkinson-hyperlegible-bold {
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.atkinson-hyperlegible-regular-italic {
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.atkinson-hyperlegible-bold-italic {
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.outputContainer {
+  margin: 4px;
+  padding: 4px;
+  border: solid;
+  max-width: fit-content;
+  background-color: white; 
+  color: black;
+}
+
+#card {
+  margin:auto;
+  border: 4px solid black;
+  width: fit-content;
+}
+
+// different frames of yu gi oh cards
+.frametype-normal {
+  background-color: #FDE68A;
+  color: black;
+}
+
+.frametype-effect {
+  background-color: #FF8B53;
+  color: black;
+}
+
+.frametype-ritual {
+  background-color: #9db5cc;
+  color: black;
+}
+
+.frametype-fusion {
+  background-color: #a086b7;
+  color: black;
+}
+
+.frametype-synchro {
+  background-color: #cccccc;
+  color: black;
+}
+
+.frametype-xyz {
+  background-color: #000000;
+  color: white;
+}
+
+.frametype-link {
+  background-color: #1475ad;
+  color: white;
+}
+
+.frametype-normal_pendulum {
+  background-color: deeppink;
+  color: white;
+}
+
+.frametype-effect_pendulum {
+  background-color: deeppink;
+  color: white;
+}
+
+.frametype-ritual_pendulum {
+  background-color: deeppink;
+  color: white;
+}
+
+.frametype-fusion_pendulum {
+  background-color: deeppink;
+  color: white;
+}
+
+.frametype-synchro_pendulum {
+  background-color: deeppink;
+  color: white;
+}
+
+.frametype-spell {
+  background-color: teal;
+  color: white;
+}
+
+.frametype-trap {
+  background-color: mediumvioletred;
+  color: white;
+}
+
+.frametype-token {
+  background-color: #828e85;
+  color: black;
+}
+
+.sentence {
+  padding-left: 15px;
+  padding-right: 10px;
+  padding-bottom: 2px;
 }
