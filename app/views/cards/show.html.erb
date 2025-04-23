@@ -6,6 +6,8 @@
 <article id="card" class="frametype-<%= @card.frameType%>" >
   <h3><%= @card.name %></h3>
 
+  <div><%= @card.card_type%></div>
+
   <!-- first, check if this is a monster, spell, or trap-->
   <% if @card.monster? %>
   
@@ -31,10 +33,16 @@
   
   <% end %>
   
-  <section class="outputContainer"><%= @card.desc %></section>
+  <section class="outputContainer" id="output"></section>
+</article>
+<article id="keywords">
+  Detected keywords:
 </article>
 <footer>
   <i>The database used for card data is maintained by YGOProDeck.com.</i>
 </footer>
+
+<div style="display:none; visibility:hidden" id="values" cardDesc="<%= @card.desc %>">
+</div>
 
 <%= javascript_include_tag 'main_card' %>
