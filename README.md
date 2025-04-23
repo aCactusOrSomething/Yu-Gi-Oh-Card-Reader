@@ -1,24 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This website displays cards from the game "Yu Gi Oh", with added line breaks and whitespace in the effect text to help make them easier to understand for new players, or players with accessibility needs.
 
-Things you may want to cover:
+# TO DO:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Functioning search tools
+2. UI improvements
+2. automate regularly checking the mother database for updates
+3. active deployment
