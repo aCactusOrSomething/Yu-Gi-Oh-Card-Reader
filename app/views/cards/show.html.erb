@@ -23,6 +23,10 @@
       <div>Link Rating: <%= @card.linkval %></div>
     <% end %>
 
+    <% if @card.linkmarkers != nil %>
+      <div>Link Markers: <%= @card.link_marker_as_string %></div>
+    <% end %>
+
     <% if @card.atk != nil %>
       <div>Attack: <%= @card.atk %></div>
     <% end %>

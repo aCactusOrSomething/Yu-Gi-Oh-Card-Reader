@@ -80,5 +80,8 @@ class Card < ApplicationRecord
     card_type.include? "Trap"
   end
 
+  def link_marker_as_string
+    linkmarkers.tr('"[]', '')
+  end
   
 end
