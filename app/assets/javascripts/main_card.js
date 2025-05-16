@@ -7,6 +7,7 @@ let keyword_element = document.getElementById('keywords');
 let values = document.getElementById('values');
 let cardDesc = values.getAttribute("cardDesc");
 
+
 // TODO: 2-word keywords do not work as currently implemented.
 const KEYWORDS = {
   "monster": "https://yugipedia.com/wiki/Monster_Card",
@@ -81,9 +82,21 @@ const KEYWORDS = {
   "control": "https://yugipedia.com/wiki/Control",
   "controls": "https://yugipedia.com/wiki/Control",
   "owner": "https://yugipedia.com/wiki/Owner",
-}
+};
+
+const ABBREVIATIONS = {
+  "ATK": "attack",
+  "DEF": "defense",
+  "LP": "life points",
+  "GY": "graveyard",
+  // because of the way i'm reading strings,
+  // "ATK/DEF" cannot easily be read as a keyword
+  // this is a duct tape solution but it works fine enough
+  'ATKDEF': "attack and defense" 
+};
 
 let keyword_links = [];
+let visited = [];
 
 finish();
 
@@ -168,7 +181,7 @@ function applyKeyWords(words, transform) {
     trimmedWord = words[i].trim().replace(/[.,\/#!$%\^&\*;:{}=\_`~()]/g, "").toLowerCase()
     keyword = KEYWORDS[trimmedWord]
     if (keyword != null) {
-      console.log('True')
+      //console.log('True')
       
       //only push to keyword_links if it's not already in there
       ret = transform(trimmedWord, keyword)
@@ -176,7 +189,7 @@ function applyKeyWords(words, transform) {
         keyword_links.push(transform(trimmedWord, keyword))
       }
     } else {
-      console.log('False')
+      //console.log('False')
     }
   }
   return words
@@ -194,6 +207,36 @@ function applyKeyWordElement(li) {
     ret.innerHTML = ret.innerHTML + item 
   }
   keyword_element.appendChild(ret);
+}
+
+
+// detects abbreviations in an array of words, and transforms them into links.
+function applyAbbreviations(words, transform, transformFirst) {
+  for (var i = 0; i < words.length; i++) {
+    trimmedWord = words[i].trim().replace(/[.,\/#!$%\^&\*;:{}=\_`~()]/g, "").toUpperCase()
+    fullWord = ABBREVIATIONS[trimmedWord]
+    if (fullWord != null) {
+      console.log(visited)
+      if(visited.includes(fullWord)) {
+        words[i] = transform(words[i], fullWord)
+      } else {
+        visited.push(fullWord)
+        words[i] = transformFirst(words[i], fullWord)
+        console.log(visited)
+      }
+    }
+  }
+  return words
+}
+
+//called by applyAbbreviations. this handles the HTML output for the abbreviated text
+function transformAbbreviations(abbr, fullWord) {
+  return(`<abbr title="${fullWord}">${abbr}</abbr>`)
+}
+
+//called by applyAbbreviations. this handles the HTML output for the FIRST instance of an abbreviation (which should additionally include the full text)
+function transformAbbreviationsFirst(abbr, fullWord){ 
+  return(`${transformAbbreviations(abbr, fullWord)} <i>(${fullWord})</i>`)
 }
 
 //turns card sentences into divs.
@@ -249,6 +292,7 @@ function getCardText(cardText) {
     for (var j = 0; j < clauses.length; j++) {
       words = getWords(clauses[j])
       words = applyKeyWords(words, transformKeyWords)
+      words = applyAbbreviations(words, transformAbbreviations, transformAbbreviationsFirst)
       clauses[j] = wordsToClause(words)
     }
     splitSentences.push(clauses)
