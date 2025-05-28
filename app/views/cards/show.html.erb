@@ -6,36 +6,56 @@
 <article id="card" class="frametype-<%= @card.frameType%>" >
   <h3><%= @card.name %></h3>
 
-  <div><%= @card.card_type%></div>
+  <span>
+    <div><%= @card.card_type%></div>
 
-  <!-- first, check if this is a monster, spell, or trap-->
-  <% if @card.monster? %>
-  
-    <% if @card.race != nil and @card.card_attribute != nil %>
-      <div><%= @card.card_attribute %> <%= @card.race %></div>
-    <% end %>
+    <!-- first, check if this is a monster, spell, or trap-->
+    <% if @card.monster? %>
     
-    <% if @card.level != nil %>
-      <div>Level: <%= @card.level %></div>
-    <% end %>
+      <% if @card.race != nil and @card.card_attribute != nil %>
+        <div><%= @card.card_attribute %> <%= @card.race %></div>
+      <% end %>
+      
+      <% if @card.level != nil %>
+        <div>Level: <%= @card.level %></div>
+      <% end %>
 
-    <% if @card.linkval != 0 %>
-      <div>Link Rating: <%= @card.linkval %></div>
-    <% end %>
+      <% if @card.linkval != 0 %>
+        <div>Link Rating: <%= @card.linkval %></div>
+      <% end %>
 
-    <% if @card.linkmarkers != nil %>
-      <div>Link Markers: <%= @card.link_marker_as_string %></div>
-    <% end %>
+      <% if @card.linkmarkers != nil %>
+        <div>Link Markers: <%= @card.link_marker_as_string %></div>
+      <% end %>
 
-    <% if @card.atk != nil %>
-      <div>Attack: <%= @card.atk %></div>
-    <% end %>
+      <% if @card.atk != nil %>
+        <div>Attack: <%= @card.atk %></div>
+      <% end %>
 
-    <% if @card.def != nil %>
-      <div>Defense: <%= @card.def %></div>
+      <% if @card.def != nil %>
+        <div>Defense: <%= @card.def %></div>
+      <% end %>
+    
     <% end %>
-  
-  <% end %>
+  </span>
+
+  <!-- Link Arrows!-->
+  <% if @card.linkmarkers != nil %>
+    <span>
+      <svg width="100" height="100">
+        <!-- TOP LEFT     --><polygon points="0,0 0,50 50,0" style="fill:red;stroke:grey;stroke-width:5;" /> 
+        <!-- TOP CENTER   --><polygon points="25,25 50,0 75,25" style="fill:blue;stroke:grey;stroke-width:5;" /> 
+        <!-- TOP RIGHT    --><polygon points="100,0 50,0 100,50" style="fill:green;stroke:grey;stroke-width:5;" /> 
+
+        <!-- CENTER LEFT  --><polygon points="25,25 0,50 25,75" style="fill:pink;stroke:grey;stroke-width:5;" /> 
+        <!-- CENTER RIGHT --><polygon points="75,25 100,50 75,75" style="fill:purple;stroke:grey;stroke-width:5;" /> 
+
+        <!-- DOWN LEFT    --><polygon points="0,100 0,50 50,100" style="fill:orange;stroke:grey;stroke-width:5;" /> 
+        <!-- DOWN CENTER  --><polygon points="25,75 50,100 75,75" style="fill:yellow;stroke:grey;stroke-width:5;" /> 
+        <!-- DOWN RIGHT   --><polygon points="100,100 50,100 100,50" style="fill:violet;stroke:grey;stroke-width:5;" /> 
+      </svg>
+    </span>
+  <%end%>
   
   <section class="outputContainer" id="output"></section>
 </article>
