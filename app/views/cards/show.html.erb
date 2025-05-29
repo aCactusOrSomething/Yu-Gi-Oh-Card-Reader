@@ -16,7 +16,11 @@
     <% end %>
     
     <% if @card.level != nil %>
-      <div>Level: <%= @card.level %></div>
+      <% if @card.card_type.downcase.include? "xyz" %>
+        <div>Rank: <%= @card.level %></div>
+      <% else %>
+        <div>Level: <%= @card.level %></div>
+      <% end %>
     <% end %>
 
     <% if @card.linkval != 0 %>
