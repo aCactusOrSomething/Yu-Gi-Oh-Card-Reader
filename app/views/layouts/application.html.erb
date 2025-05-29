@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <nav class="searchbar">
+    <nav class="searchbar container">
       <%= form_tag(cards_path, method: :get) do %>
         <%= text_field_tag :query, params[:query] %>
         <%= submit_tag ("Search")%>
@@ -20,5 +20,8 @@
     <main role="main" class="container">
       <%= yield %>
     </main>
+    <footer class="container">
+      <i>The database used for card data is maintained by YGOProDeck.com.</i>
+    </footer>
   </body>
 </html>
