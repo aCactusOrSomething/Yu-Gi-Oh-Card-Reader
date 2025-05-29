@@ -41,18 +41,67 @@
 
   <!-- Link Arrows!-->
   <% if @card.linkmarkers != nil %>
+    <% svg_l = 150 %>
     <span>
-      <svg width="100" height="100">
-        <!-- TOP LEFT     --><polygon points="0,0 0,50 50,0" style="fill:red;stroke:grey;stroke-width:5;" /> 
-        <!-- TOP CENTER   --><polygon points="25,25 50,0 75,25" style="fill:blue;stroke:grey;stroke-width:5;" /> 
-        <!-- TOP RIGHT    --><polygon points="100,0 50,0 100,50" style="fill:green;stroke:grey;stroke-width:5;" /> 
+      <svg width="<%=svg_l%>" height="<%=svg_l%>">
+        <!-- TOP LEFT -->
+        <polygon 
+          points="<%=svg_l * 0%>,<%=svg_l * 0%>
+                  <%=svg_l * 0%>,<%=svg_l * 0.5%>
+                  <%=svg_l * 0.5%>,<%=svg_l * 0%>"
+          style="fill:red;stroke:grey;stroke-width:5;"
+        />
+        <!-- TOP CENTER   -->
+        <polygon 
+          points="<%=svg_l * 0.25%>,<%=svg_l * 0.25%>
+                  <%=svg_l * 0.5%>,<%=svg_l * 0%>
+                  <%=svg_l * 0.75%>,<%=svg_l * 0.25%>" 
+          style="fill:blue;stroke:grey;stroke-width:5;"
+        /> 
+        <!-- TOP RIGHT    -->
+        <polygon 
+          points="<%=svg_l * 1%>,<%=svg_l * 0%>
+                  <%=svg_l * 0.5%>,<%=svg_l * 0%>
+                  <%=svg_l * 1%>,<%=svg_l * 0.5%>"
+          style="fill:green;stroke:grey;stroke-width:5;"
+        /> 
 
-        <!-- CENTER LEFT  --><polygon points="25,25 0,50 25,75" style="fill:pink;stroke:grey;stroke-width:5;" /> 
-        <!-- CENTER RIGHT --><polygon points="75,25 100,50 75,75" style="fill:purple;stroke:grey;stroke-width:5;" /> 
+        <!-- CENTER LEFT  -->
+        <polygon
+          points="<%=svg_l * 0.25%>,<%=svg_l * 0.25%>
+                  <%=svg_l * 0%>,<%=svg_l * 0.5%>
+                  <%=svg_l * 0.25%>,<%=svg_l * 0.75%>"
+          style="fill:pink;stroke:grey;stroke-width:5;"
+        /> 
+        <!-- CENTER RIGHT -->
+        <polygon
+          points="<%=svg_l * 0.75%>,<%=svg_l * 0.25%>
+                  <%=svg_l * 1%>,<%=svg_l * 0.50%>
+                  <%=svg_l * 0.75%>,<%=svg_l * 0.75%>"
+          style="fill:purple;stroke:grey;stroke-width:5;" 
+        /> 
 
-        <!-- DOWN LEFT    --><polygon points="0,100 0,50 50,100" style="fill:orange;stroke:grey;stroke-width:5;" /> 
-        <!-- DOWN CENTER  --><polygon points="25,75 50,100 75,75" style="fill:yellow;stroke:grey;stroke-width:5;" /> 
-        <!-- DOWN RIGHT   --><polygon points="100,100 50,100 100,50" style="fill:violet;stroke:grey;stroke-width:5;" /> 
+        <!-- DOWN LEFT    -->
+        <polygon 
+          points="<%=svg_l * 0%>,<%=svg_l * 1%>
+                  <%=svg_l * 0%>,<%=svg_l * 0.5%>
+                  <%=svg_l * 0.5%>,<%=svg_l * 1%>"
+          style="fill:orange;stroke:grey;stroke-width:5;"
+        /> 
+        <!-- DOWN CENTER  -->
+        <polygon 
+          points="<%=svg_l * 0.25%>,<%=svg_l * 0.75%>
+                  <%=svg_l * 0.5%>,<%=svg_l * 1%>
+                  <%=svg_l * 0.75%>,<%=svg_l * 0.75%>"
+          style="fill:yellow;stroke:grey;stroke-width:5;"
+        /> 
+        <!-- DOWN RIGHT   -->
+        <polygon 
+          points="<%=svg_l * 1%>,<%=svg_l * 1%> 
+                  <%=svg_l * 0.5%>,<%=svg_l * 1%> 
+                  <%=svg_l * 1%>,<%=svg_l * 0.5%>" 
+          style="fill:violet;stroke:grey;stroke-width:5;" 
+        /> 
       </svg>
     </span>
   <%end%>
