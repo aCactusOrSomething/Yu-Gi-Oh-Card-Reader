@@ -1,11 +1,11 @@
 class CreateCards < ActiveRecord::Migration[7.1]
   def change
-    create_table :cards, id: false, primary_key: :card_id do |t|
-      t.integer :card_id, null: false
-      t.string :name, null: false
-      t.string :card_type, null: false
-      t.string :frameType, null: false
-      t.string :desc, null: false
+    create_table :cards do |t|
+      t.integer :card_id
+      t.string :name
+      t.string :card_type
+      t.string :frameType
+      t.string :desc
       t.integer :atk
       t.integer :def
       t.string :race
@@ -14,6 +14,7 @@ class CreateCards < ActiveRecord::Migration[7.1]
       t.integer :linkval
       t.string :linkmarkers
       t.integer :level
+      t.string :name_searchable
 
       t.timestamps
     end

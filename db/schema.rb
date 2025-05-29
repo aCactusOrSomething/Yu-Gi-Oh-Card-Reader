@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_11_110118) do
-  create_table "cards", id: false, force: :cascade do |t|
-    t.integer "card_id", null: false
-    t.string "name", null: false
-    t.string "card_type", null: false
-    t.string "frameType", null: false
-    t.string "desc", null: false
+ActiveRecord::Schema[7.1].define(version: 2025_05_29_183349) do
+  create_table "cards", force: :cascade do |t|
+    t.integer "card_id"
+    t.string "name"
+    t.string "card_type"
+    t.string "frameType"
+    t.string "desc"
     t.integer "atk"
     t.integer "def"
     t.string "race"
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_11_110118) do
     t.integer "linkval"
     t.string "linkmarkers"
     t.integer "level"
+    t.string "name_searchable"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

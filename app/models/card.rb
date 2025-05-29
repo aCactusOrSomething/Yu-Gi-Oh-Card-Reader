@@ -2,21 +2,23 @@
 #
 # Table name: cards
 #
-#  atk            :integer
-#  card_attribute :string
-#  card_type      :string           not null
-#  def            :integer
-#  desc           :string           not null
-#  frameType      :string           not null
-#  level          :integer
-#  linkmarkers    :string
-#  linkval        :integer
-#  name           :string           not null
-#  race           :string
-#  scale          :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  card_id        :integer          not null, primary key
+#  id              :integer          not null
+#  atk             :integer
+#  card_attribute  :string
+#  card_type       :string
+#  def             :integer
+#  desc            :string
+#  frameType       :string
+#  level           :integer
+#  linkmarkers     :string
+#  linkval         :integer
+#  name            :string
+#  name_searchable :string
+#  race            :string
+#  scale           :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  card_id         :integer          primary key
 #
 class Card < ApplicationRecord
   self.primary_key = :card_id

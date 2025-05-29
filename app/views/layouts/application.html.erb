@@ -11,6 +11,12 @@
   </head>
 
   <body>
+    <nav class="searchbar">
+      <%= form_tag(cards_path, method: :get) do %>
+        <%= text_field_tag :query, params[:query] %>
+        <%= submit_tag ("Search")%>
+      <% end %>
+    </nav>
     <main role="main" class="container">
       <%= yield %>
     </main>
