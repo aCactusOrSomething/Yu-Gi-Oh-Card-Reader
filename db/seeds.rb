@@ -39,7 +39,7 @@ data.each{ |card|
   end
   if(card.key?('name'))
     name = card['name']
-    name_searchable = name.upcase.gsub!(/[^0-9A-Z]/, '')
+    name_searchable = name.upcase.gsub!(/[^\x00-\x7F]/, ' ')
     if name_searchable == nil
       name_searchable = name.upcase
     end
