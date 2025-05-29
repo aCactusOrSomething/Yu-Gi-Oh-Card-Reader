@@ -16,6 +16,7 @@
         <%= text_field_tag :query, params[:query] %>
         <%= submit_tag ("Search")%>
       <% end %>
+      <%= button_to "Home", home_path, :method => "get" %>
     </nav>
     <main role="main" class="container">
       <%= yield %>

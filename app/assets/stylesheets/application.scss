@@ -67,11 +67,33 @@ body {
 }
 
 .flex-container {
-
   display:flex;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
+
+/* doing weird stuff to target the navbar styling */
+.searchbar * {
+  display: inline;
+}
+
+.searchbar form input[name=commit], .searchbar button {
+  border: 2px solid black;
+  border-radius: 4px;
+  background-color: #eeeeee;
+  color: black;
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  padding: 0em 0.5em;
+  transition-duration: 0.2s;
+}
+
+.searchbar form input[name=commit]:hover, .searchbar button:hover {
+  background-color: skyblue;
+} 
+
+
 
 #card-info-container {
   margin-right: 5em;
