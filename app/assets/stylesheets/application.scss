@@ -66,6 +66,17 @@ body {
   color: black;
 }
 
+.flex-container {
+
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+#card-info-container {
+  margin-right: 5em;
+}
+
 #card {
   margin:auto;
   margin-top: 0.5em;
@@ -74,6 +85,10 @@ body {
   width: fit-content;
   max-width: 80em;
   padding: 0.5em;
+}
+
+.card-name {
+  text-align: left;
 }
 
 // different frames of yu gi oh cards
@@ -162,3 +177,4 @@ body {
   stroke:grey;
   stroke-width:5; 
 }
+

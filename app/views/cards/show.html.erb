@@ -4,112 +4,113 @@
 </nav>
 
 <article id="card" class="frametype-<%= @card.frameType %>" >
-  <h3><%= @card.name %></h3>
 
-  <span>
-    <div><%= @card.card_type%></div>
+  <div class="flex-container">
+    <!-- Card Info! -->
+    <div id="card-info-container">
+      <h3 class="card-name"><%= @card.name %></h3>
 
-    <!-- first, check if this is a monster, spell, or trap-->
-    <% if @card.monster? %>
-    
-      <% if @card.race != nil and @card.card_attribute != nil %>
-        <div><%= @card.card_attribute %> <%= @card.race %></div>
-      <% end %>
+      <div><%= @card.card_type%></div>
+
+      <!-- first, check if this is a monster, spell, or trap-->
+      <% if @card.monster? %>
       
-      <% if @card.level != nil %>
-        <div>Level: <%= @card.level %></div>
-      <% end %>
+        <% if @card.race != nil and @card.card_attribute != nil %>
+          <div><%= @card.card_attribute %> <%= @card.race %></div>
+        <% end %>
+        
+        <% if @card.level != nil %>
+          <div>Level: <%= @card.level %></div>
+        <% end %>
 
-      <% if @card.linkval != 0 %>
-        <div>Link Rating: <%= @card.linkval %></div>
-      <% end %>
+        <% if @card.linkval != 0 %>
+          <div>Link Rating: <%= @card.linkval %></div>
+        <% end %>
 
-      <% if @card.linkmarkers != nil %>
-        <div>Link Markers: <%= @card.link_marker_as_string %></div>
-      <% end %>
+        <% if @card.linkmarkers != nil %>
+          <div>Link Markers: <%= @card.link_marker_as_string %></div>
+        <% end %>
 
-      <% if @card.atk != nil %>
-        <div>Attack: <%= @card.atk %></div>
-      <% end %>
+        <% if @card.atk != nil %>
+          <div>Attack: <%= @card.atk %></div>
+        <% end %>
 
-      <% if @card.def != nil %>
-        <div>Defense: <%= @card.def %></div>
-      <% end %>
-    
-    <% end %>
-  </span>
-
-  <!-- Link Arrows!-->
-  <% if @card.linkmarkers != nil %>
-    <% # for math purposes:
-      s_len = 150 #length of the SVG's sides
-      s_side = 0.5 / (Math.sqrt(2)) # one side of the corner triangles
-      s_pad = 0.03 # padding for spacing
+        <% if @card.def != nil %>
+          <div>Defense: <%= @card.def %></div>
+        <% end %>
       
-    %>
-    <span>
-      <svg width="<%=s_len%>" height="<%=s_len%>">
-        <!-- TOP LEFT -->
-        <polygon 
-          points="<%= s_len * (0 + s_pad) %>,<%= s_len * (0 + s_pad) %>
-                  <%= s_len * (0 + s_pad) %>,<%= s_len * (s_side + s_pad) %>
-                  <%= s_len * (s_side + s_pad) %>,<%= s_len * (0 + s_pad) %>"
-          class="linkarrow-<%= @card.link_marker_as_array.include? 'Top-Left' %>"
-        />
-        <!-- TOP -->
-        <polygon 
-          points="<%= s_len * 0.25 %>,<%= s_len * 0.25 %>
-                  <%= s_len * 0.5 %>,<%= s_len * 0 %>
-                  <%= s_len * 0.75 %>,<%= s_len * 0.25 %>" 
-          class="linkarrow-<%= @card.link_marker_as_array.include? 'Top' %>"
-        /> 
-        <!-- TOP RIGHT -->
-        <polygon 
-          points="<%= s_len * (1 - s_pad) %>,<%= s_len * (0 + s_pad) %>
-                  <%= s_len * (1 - s_side - s_pad) %>,<%= s_len * (0 + s_pad) %>
-                  <%= s_len * (1 - s_pad) %>,<%= s_len * (s_side + s_pad) %>"
-          class="linkarrow-<%= @card.link_marker_as_array.include? 'Top-Right' %>"
-        /> 
+      <% end %>
+    </div>
 
-        <!-- LEFT -->
-        <polygon
-          points="<%= s_len * 0.25 %>,<%= s_len * 0.25 %>
-                  <%= s_len * 0 %>,<%= s_len * 0.5 %>
-                  <%= s_len * 0.25 %>,<%= s_len * 0.75 %>"
-          class="linkarrow-<%= @card.link_marker_as_array.include? 'Left' %>"
-        /> 
-        <!-- RIGHT -->
-        <polygon
-          points="<%= s_len * 0.75 %>,<%= s_len * 0.25 %>
-                  <%= s_len * 1 %>,<%= s_len * 0.50 %>
-                  <%= s_len * 0.75 %>,<%= s_len * 0.75 %>"
-          class="linkarrow-<%= @card.link_marker_as_array.include? 'Right' %>"
-        /> 
-
-        <!-- BOTTOM LEFT -->
-        <polygon 
-          points="<%= s_len * (0 + s_pad) %>,<%= s_len * (1 - s_pad) %>
-                  <%= s_len * (0 + s_pad) %>,<%= s_len * (1 - s_side - s_pad) %>
-                  <%= s_len * (s_side + s_pad) %>,<%= s_len * (1 - s_pad) %>"
-          class="linkarrow-<%= @card.link_marker_as_array.include? 'Bottom-Left' %>"
-        /> 
-        <!-- BOTTOM -->
-        <polygon 
-          points="<%= s_len * 0.25 %>,<%= s_len * 0.75 %>
-                  <%= s_len * 0.5 %>,<%= s_len * 1 %>
-                  <%= s_len * 0.75 %>,<%= s_len * 0.75 %>"
-          class="linkarrow-<%= @card.link_marker_as_array.include? 'Bottom' %>"
-        /> 
-        <!-- BOTTOM RIGHT -->
-        <polygon 
-          points="<%= s_len * (1 - s_pad) %>,<%= s_len * (1 - s_pad) %> 
-                  <%= s_len * (1 - s_side - s_pad) %>,<%= s_len * (1 - s_pad) %> 
-                  <%= s_len * (1 - s_pad) %>,<%= s_len * (1 - s_side - s_pad) %>" 
-          class="linkarrow-<%= @card.link_marker_as_array.include? 'Bottom-Right' %>"
-        /> 
-      </svg>
-    </span>
-  <%end%>
+    <!-- Link Arrows!-->
+    <% if @card.linkmarkers != nil %>
+      <% # calculated values for math purposes:
+        s_len = 150 #length of the SVG's sides
+        s_side = 0.5 / (Math.sqrt(2)) # one side of the corner triangles
+        s_pad = 0.03 # padding for spacing
+      %>
+      <div id="link-arrow-svg-container">
+        <svg width="<%=s_len%>" height="<%=s_len%>">
+          <!-- TOP LEFT -->
+          <polygon 
+            points="<%= s_len * (0 + s_pad) %>,<%= s_len * (0 + s_pad) %>
+                    <%= s_len * (0 + s_pad) %>,<%= s_len * (s_side + s_pad) %>
+                    <%= s_len * (s_side + s_pad) %>,<%= s_len * (0 + s_pad) %>"
+            class="linkarrow-<%= @card.link_marker_as_array.include? 'Top-Left' %>"
+          />
+          <!-- TOP -->
+          <polygon 
+            points="<%= s_len * 0.25 %>,<%= s_len * 0.25 %>
+                    <%= s_len * 0.5 %>,<%= s_len * 0 %>
+                    <%= s_len * 0.75 %>,<%= s_len * 0.25 %>" 
+            class="linkarrow-<%= @card.link_marker_as_array.include? 'Top' %>"
+          /> 
+          <!-- TOP RIGHT -->
+          <polygon 
+            points="<%= s_len * (1 - s_pad) %>,<%= s_len * (0 + s_pad) %>
+                    <%= s_len * (1 - s_side - s_pad) %>,<%= s_len * (0 + s_pad) %>
+                    <%= s_len * (1 - s_pad) %>,<%= s_len * (s_side + s_pad) %>"
+            class="linkarrow-<%= @card.link_marker_as_array.include? 'Top-Right' %>"
+          /> 
+          <!-- LEFT -->
+          <polygon
+            points="<%= s_len * 0.25 %>,<%= s_len * 0.25 %>
+                    <%= s_len * 0 %>,<%= s_len * 0.5 %>
+                    <%= s_len * 0.25 %>,<%= s_len * 0.75 %>"
+            class="linkarrow-<%= @card.link_marker_as_array.include? 'Left' %>"
+          /> 
+          <!-- RIGHT -->
+          <polygon
+            points="<%= s_len * 0.75 %>,<%= s_len * 0.25 %>
+                    <%= s_len * 1 %>,<%= s_len * 0.50 %>
+                    <%= s_len * 0.75 %>,<%= s_len * 0.75 %>"
+            class="linkarrow-<%= @card.link_marker_as_array.include? 'Right' %>"
+          /> 
+          <!-- BOTTOM LEFT -->
+          <polygon 
+            points="<%= s_len * (0 + s_pad) %>,<%= s_len * (1 - s_pad) %>
+                    <%= s_len * (0 + s_pad) %>,<%= s_len * (1 - s_side - s_pad) %>
+                    <%= s_len * (s_side + s_pad) %>,<%= s_len * (1 - s_pad) %>"
+            class="linkarrow-<%= @card.link_marker_as_array.include? 'Bottom-Left' %>"
+          /> 
+          <!-- BOTTOM -->
+          <polygon 
+            points="<%= s_len * 0.25 %>,<%= s_len * 0.75 %>
+                    <%= s_len * 0.5 %>,<%= s_len * 1 %>
+                    <%= s_len * 0.75 %>,<%= s_len * 0.75 %>"
+            class="linkarrow-<%= @card.link_marker_as_array.include? 'Bottom' %>"
+          /> 
+          <!-- BOTTOM RIGHT -->
+          <polygon 
+            points="<%= s_len * (1 - s_pad) %>,<%= s_len * (1 - s_pad) %> 
+                    <%= s_len * (1 - s_side - s_pad) %>,<%= s_len * (1 - s_pad) %> 
+                    <%= s_len * (1 - s_pad) %>,<%= s_len * (1 - s_side - s_pad) %>" 
+            class="linkarrow-<%= @card.link_marker_as_array.include? 'Bottom-Right' %>"
+          /> 
+        </svg>
+      </div>
+    <%end%>
+  </div>
   
   <section class="outputContainer" id="output"></section>
 </article>
