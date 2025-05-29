@@ -26,6 +26,10 @@
             <div>Level: <%= @card.level %></div>
           <% end %>
         <% end %>
+        
+        <% if @card.pendulum? %>
+          <div>Pendulum Scales: <%= @card.scale %></div>
+        <% end %>
 
         <% if @card.linkval != 0 %>
           <div>Link Rating: <%= @card.linkval %></div>
