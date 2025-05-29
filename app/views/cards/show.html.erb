@@ -3,7 +3,7 @@
   <input type="button" id="submitButton" onclick="run()" value="Search" />
 </nav>
 
-<article id="card" class="frametype-<%= @card.frameType%>" >
+<article id="card" class="frametype-<%= @card.frameType %>" >
   <h3><%= @card.name %></h3>
 
   <span>
@@ -41,66 +41,71 @@
 
   <!-- Link Arrows!-->
   <% if @card.linkmarkers != nil %>
-    <% svg_l = 150 %>
+    <% # for math purposes:
+      s_len = 150 #length of the SVG's sides
+      s_side = 0.5 / (Math.sqrt(2)) # one side of the corner triangles
+      s_pad = 0.03 # padding for spacing
+      
+    %>
     <span>
-      <svg width="<%=svg_l%>" height="<%=svg_l%>">
+      <svg width="<%=s_len%>" height="<%=s_len%>">
         <!-- TOP LEFT -->
         <polygon 
-          points="<%=svg_l * 0%>,<%=svg_l * 0%>
-                  <%=svg_l * 0%>,<%=svg_l * 0.5%>
-                  <%=svg_l * 0.5%>,<%=svg_l * 0%>"
-          style="fill:red;stroke:grey;stroke-width:5;"
+          points="<%= s_len * (0 + s_pad) %>,<%= s_len * (0 + s_pad) %>
+                  <%= s_len * (0 + s_pad) %>,<%= s_len * (s_side + s_pad) %>
+                  <%= s_len * (s_side + s_pad) %>,<%= s_len * (0 + s_pad) %>"
+          class="linkarrow-<%= @card.link_marker_as_array.include? 'Top-Left' %>"
         />
-        <!-- TOP CENTER   -->
+        <!-- TOP -->
         <polygon 
-          points="<%=svg_l * 0.25%>,<%=svg_l * 0.25%>
-                  <%=svg_l * 0.5%>,<%=svg_l * 0%>
-                  <%=svg_l * 0.75%>,<%=svg_l * 0.25%>" 
-          style="fill:blue;stroke:grey;stroke-width:5;"
+          points="<%= s_len * 0.25 %>,<%= s_len * 0.25 %>
+                  <%= s_len * 0.5 %>,<%= s_len * 0 %>
+                  <%= s_len * 0.75 %>,<%= s_len * 0.25 %>" 
+          class="linkarrow-<%= @card.link_marker_as_array.include? 'Top' %>"
         /> 
-        <!-- TOP RIGHT    -->
+        <!-- TOP RIGHT -->
         <polygon 
-          points="<%=svg_l * 1%>,<%=svg_l * 0%>
-                  <%=svg_l * 0.5%>,<%=svg_l * 0%>
-                  <%=svg_l * 1%>,<%=svg_l * 0.5%>"
-          style="fill:green;stroke:grey;stroke-width:5;"
+          points="<%= s_len * (1 - s_pad) %>,<%= s_len * (0 + s_pad) %>
+                  <%= s_len * (1 - s_side - s_pad) %>,<%= s_len * (0 + s_pad) %>
+                  <%= s_len * (1 - s_pad) %>,<%= s_len * (s_side + s_pad) %>"
+          class="linkarrow-<%= @card.link_marker_as_array.include? 'Top-Right' %>"
         /> 
 
-        <!-- CENTER LEFT  -->
+        <!-- LEFT -->
         <polygon
-          points="<%=svg_l * 0.25%>,<%=svg_l * 0.25%>
-                  <%=svg_l * 0%>,<%=svg_l * 0.5%>
-                  <%=svg_l * 0.25%>,<%=svg_l * 0.75%>"
-          style="fill:pink;stroke:grey;stroke-width:5;"
+          points="<%= s_len * 0.25 %>,<%= s_len * 0.25 %>
+                  <%= s_len * 0 %>,<%= s_len * 0.5 %>
+                  <%= s_len * 0.25 %>,<%= s_len * 0.75 %>"
+          class="linkarrow-<%= @card.link_marker_as_array.include? 'Left' %>"
         /> 
-        <!-- CENTER RIGHT -->
+        <!-- RIGHT -->
         <polygon
-          points="<%=svg_l * 0.75%>,<%=svg_l * 0.25%>
-                  <%=svg_l * 1%>,<%=svg_l * 0.50%>
-                  <%=svg_l * 0.75%>,<%=svg_l * 0.75%>"
-          style="fill:purple;stroke:grey;stroke-width:5;" 
+          points="<%= s_len * 0.75 %>,<%= s_len * 0.25 %>
+                  <%= s_len * 1 %>,<%= s_len * 0.50 %>
+                  <%= s_len * 0.75 %>,<%= s_len * 0.75 %>"
+          class="linkarrow-<%= @card.link_marker_as_array.include? 'Right' %>"
         /> 
 
-        <!-- DOWN LEFT    -->
+        <!-- BOTTOM LEFT -->
         <polygon 
-          points="<%=svg_l * 0%>,<%=svg_l * 1%>
-                  <%=svg_l * 0%>,<%=svg_l * 0.5%>
-                  <%=svg_l * 0.5%>,<%=svg_l * 1%>"
-          style="fill:orange;stroke:grey;stroke-width:5;"
+          points="<%= s_len * (0 + s_pad) %>,<%= s_len * (1 - s_pad) %>
+                  <%= s_len * (0 + s_pad) %>,<%= s_len * (1 - s_side - s_pad) %>
+                  <%= s_len * (s_side + s_pad) %>,<%= s_len * (1 - s_pad) %>"
+          class="linkarrow-<%= @card.link_marker_as_array.include? 'Bottom-Left' %>"
         /> 
-        <!-- DOWN CENTER  -->
+        <!-- BOTTOM -->
         <polygon 
-          points="<%=svg_l * 0.25%>,<%=svg_l * 0.75%>
-                  <%=svg_l * 0.5%>,<%=svg_l * 1%>
-                  <%=svg_l * 0.75%>,<%=svg_l * 0.75%>"
-          style="fill:yellow;stroke:grey;stroke-width:5;"
+          points="<%= s_len * 0.25 %>,<%= s_len * 0.75 %>
+                  <%= s_len * 0.5 %>,<%= s_len * 1 %>
+                  <%= s_len * 0.75 %>,<%= s_len * 0.75 %>"
+          class="linkarrow-<%= @card.link_marker_as_array.include? 'Bottom' %>"
         /> 
-        <!-- DOWN RIGHT   -->
+        <!-- BOTTOM RIGHT -->
         <polygon 
-          points="<%=svg_l * 1%>,<%=svg_l * 1%> 
-                  <%=svg_l * 0.5%>,<%=svg_l * 1%> 
-                  <%=svg_l * 1%>,<%=svg_l * 0.5%>" 
-          style="fill:violet;stroke:grey;stroke-width:5;" 
+          points="<%= s_len * (1 - s_pad) %>,<%= s_len * (1 - s_pad) %> 
+                  <%= s_len * (1 - s_side - s_pad) %>,<%= s_len * (1 - s_pad) %> 
+                  <%= s_len * (1 - s_pad) %>,<%= s_len * (1 - s_side - s_pad) %>" 
+          class="linkarrow-<%= @card.link_marker_as_array.include? 'Bottom-Right' %>"
         /> 
       </svg>
     </span>

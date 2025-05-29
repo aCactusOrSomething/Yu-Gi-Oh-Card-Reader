@@ -151,3 +151,14 @@ body {
   background-color: #828e85;
   color: black;
 }
+
+.linkarrow-true {
+  fill:red;
+  stroke:grey;
+  stroke-width:5; 
+}
+.linkarrow-false {
+  fill:#333333;
+  stroke:grey;
+  stroke-width:5; 
+}
