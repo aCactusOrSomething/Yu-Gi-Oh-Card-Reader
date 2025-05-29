@@ -8,18 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-FAKE_CARD = Card.create!(
-  card_id: -1,
-  name: "No Card Found",
-  card_type: "XYZ Monster",
-  frameType: "xyz",
-  desc: "Please type the card's full name.",
-  atk: 200,
-  def: 500,
-  race: "Plant",
-  card_attribute: "DIVINE" 
-); # for testing purposes
-
 require 'httparty'
 
 puts 'pulling data from ygoprodeck...
@@ -33,6 +21,7 @@ puts 'converting data...'
 data.each{ |card|
   card_id = 0
   name = ''
+  name_searchable = ''
   card_type = ''
   frameType = ''
   desc = ''
@@ -50,6 +39,10 @@ data.each{ |card|
   end
   if(card.key?('name'))
     name = card['name']
+    name_searchable = name.upcase.gsub!(/[^0-9A-Z]/, '')
+    if name_searchable == nil
+      name_searchable = name.upcase
+    end
   end
   if(card.key?('humanReadableCardType'))
     card_type = card['humanReadableCardType']
@@ -88,6 +81,7 @@ data.each{ |card|
   ret = Card.create!(
     card_id: card_id,
     name: name,
+    name_searchable: name_searchable,
     card_type: card_type,
     frameType: frameType,
     desc: desc,
