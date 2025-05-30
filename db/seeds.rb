@@ -24,9 +24,8 @@ version_dom = version_res[0]['database_version']
 
 puts "version: " + version_dom
 
-
 # we need to compare the big db's version to our own cache of it
-if AccessDatum.all[0] != nil and AccessDatum.all[0].database_version > version_dom
+if AccessDatum.all[0] != nil and AccessDatum.all[0].database_version >= version_dom.to_d
   puts "local DB is up to date. no update necessary."
   return
 end
@@ -95,18 +94,18 @@ data.each{ |card_dom|
       card_sub.desc = ''
     end
 
-    # c_atk (attack points)
+    # atk (attack points)
     if(card_dom.key?('atk'))
-      card_sub.c_atk = card_dom['atk']
+      card_sub.atk = card_dom['atk']
     else
-      card_sub.c_atk = 0
+      card_sub.atk = 0
     end
 
-    # c_def (defense points)
+    # def (defense points)
     if(card_dom.key?('def'))
-      card_sub.c_def = card_dom['def']
+      card_sub.def = card_dom['def']
     else
-      card_sub.c_def = 0
+      card_sub.def = 0
     end
 
     # race
@@ -159,4 +158,8 @@ data.each{ |card_dom|
 }
 print "\nall data converted.\n"
 
+# now we need to update the AccessDatum with the current version.
+AccessDatum.find_or_create_by(id: 0) do |access_datum|
+  access_datum.database_version = version_dom.to_d
+end
 puts 'Seeding complete!'
