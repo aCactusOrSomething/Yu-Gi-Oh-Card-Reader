@@ -78,21 +78,23 @@ data.each{ |card|
     level = card['level']
   end
 
-  ret = Card.create!(
-    card_id: card_id,
-    name: name,
-    name_searchable: name_searchable,
-    card_type: card_type,
-    frameType: frameType,
-    desc: desc,
-    atk: c_atk,
-    def: c_def,
-    race: race,
-    card_attribute: card_attribute,
-    scale: scale,
-    linkval: linkval,
-    linkmarkers: linkmarkers,
-    level: level
-  )
+  # creates the card in the database
+  # previously used create! which causes problems when updating existing databases.
+  ret = Card.find_or_create_by(card_id: card_id) do |db_card|
+    db_card.card_id = card_id
+    db_card.name = name
+    db_card.name_searchable = name_searchable
+    db_card.card_type = card_type
+    db_card.frameType = frameType
+    db_card.desc = desc
+    db_card.atk = c_atk
+    db_card.def = c_def
+    db_card.race = race
+    db_card.card_attribute = card_attribute
+    db_card.scale = scale
+    db_card.linkval = linkval
+    db_card.linkmarkers = linkmarkers
+    db_card.level = level
+  end
 }
 puts 'migration complete.'
