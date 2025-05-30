@@ -1,25 +1,28 @@
-# SQLite. Versions 3.8.0 and up are supported.
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem "sqlite3"
-#
+# This header originally had test information for sqlite3.
+# I have since manually refactored over to postgresql.
+# Make sure you have that installed.
+
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
 
 development:
   <<: *default
-  database: storage/development.sqlite3
+  database: card-viewer_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: storage/test.sqlite3
+  database: card-viewer_test
 
 production:
   <<: *default
-  database: storage/production.sqlite3
+  database: card-viewer_production
+  username: card-viewer
+  password: <%= ENV['card-viewer_DATABASE_PASSWORD'] %>
+

@@ -2,7 +2,7 @@
 #
 # Table name: cards
 #
-#  id              :integer          not null
+#  id              :bigint           not null
 #  atk             :integer
 #  card_attribute  :string
 #  card_type       :string
