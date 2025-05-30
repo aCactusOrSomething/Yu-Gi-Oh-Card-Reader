@@ -14,13 +14,36 @@ require 'httparty'
 # the alternative would be to have no database of our own, and instead make API requests for one card every time the user loads a page...
 # but the guide advises against doing this specifically, and instead recommends storing all data locally once pulled.
 
+version_url = 'https://db.ygoprodeck.com/api/v7/checkDBVer.php'
+cardinfo_url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php'
+
+#first, we should get the database version.
+puts 'checking ygoprodeck database version...'
+version_res = HTTParty.get(version_url).parsed_response
+version_dom = version_res[0]['database_version']
+
+puts "version: " + version_dom
+
+
+# we need to compare the big db's version to our own cache of it
+if AccessDatum.all[0] != nil and AccessDatum.all[0].database_version > version_dom
+  puts "local DB is up to date. no update necessary."
+  return
+end
+
+puts "update needed."
+
+#once we know that we're OK to get the big thing, we just do an API request for Everything...
 puts 'pulling data from ygoprodeck...'
-
-response = HTTParty.get('https://db.ygoprodeck.com/api/v7/cardinfo.php').parsed_response
-
+response = HTTParty.get(cardinfo_url).parsed_response
 data = response['data']
 
-puts 'converting data...'
+
+puts 'Data recieved. Seeding local database...'
+# this is for tracking progress.
+i = 0
+print i.to_s + "/" + data.length().to_s + "\s"
+STDOUT.flush
 
 # we want to take each card_dom from the external database, and copy (or update) the corresponding card_sub in our database. 
 data.each{ |card_dom|
@@ -128,5 +151,12 @@ data.each{ |card_dom|
       card_sub.level = 0
     end
   end
+
+  i = i + 1
+  print "\r"
+  print i.to_s + "/" + data.length().to_s + "\s"
+  STDOUT.flush
 }
-puts 'migration complete.'
+print "\nall data converted.\n"
+
+puts 'Seeding complete!'
