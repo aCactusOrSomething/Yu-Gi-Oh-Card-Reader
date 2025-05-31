@@ -78,7 +78,7 @@ body {
 }
 
 .searchbar form input[name=commit], .searchbar button {
-  border: 2px solid black;
+  border: 2px solid #777777;
   border-radius: 4px;
   background-color: #eeeeee;
   color: black;
@@ -87,16 +87,35 @@ body {
   font-style: normal;
   padding: 0em 0.5em;
   transition-duration: 0.2s;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.searchbar form input[name=query] {
+  min-width: 44px;
+  min-height: 44px;
+  border: 2px solid #777777;
+  border-radius: 4px;
 }
 
 .searchbar form input[name=commit]:hover, .searchbar button:hover {
-  background-color: skyblue;
+  background-color: #87CEEB;
 } 
 
+
+//focus indicator reccommended by https://www.sarasoueidan.com/blog/focus-indicators/#a-%E2%80%98universal%E2%80%99-focus-indicator
+:focus-visible {
+  outline: 3px solid black;
+  box-shadow: 0 0 0 6px white;
+}
 
 
 #card-info-container {
   margin-right: 5em;
+}
+
+.constrain {
+  max-width: 80em;
 }
 
 #card {
@@ -110,7 +129,7 @@ body {
 }
 
 .sentence {
-  padding-left: 15px;
+  padding-left: 1.5em;
   padding-right: 10px;
   padding-bottom: 2px;
 }
@@ -132,7 +151,7 @@ body {
 }
 
 .frametype-fusion {
-  background-color: #a086b7;
+  background-color: #A58CBA;
   color: black;
 }
 
@@ -147,42 +166,42 @@ body {
 }
 
 .frametype-link {
-  background-color: #1475ad;
+  background-color: #115C88;
   color: white;
 }
 
 .frametype-normal_pendulum {
-  background: linear-gradient(#FDE68A, teal);
+  background: linear-gradient(#FDE68A, #006363);
   color: black;
 }
 
 .frametype-effect_pendulum {
-  background: linear-gradient(#FF8B53, teal);
+  background: linear-gradient(#FF8B53, #006363);
   color: black;
 }
 
 .frametype-ritual_pendulum {
-  background: linear-gradient(#9db5cc, teal);
+  background: linear-gradient(#9db5cc, #006363);
   color: black;
 }
 
 .frametype-fusion_pendulum {
-  background: linear-gradient(#a086b7, teal);
+  background: linear-gradient(#a086b7, #006363);
   color: black;
 }
 
 .frametype-synchro_pendulum {
-  background: linear-gradient(#cccccc, teal);
+  background: linear-gradient(#cccccc, #006363);
   color: black;
 }
 
 .frametype-spell {
-  background-color: teal;
+  background-color: #006363;
   color: white;
 }
 
 .frametype-trap {
-  background-color: mediumvioletred;
+  background-color: #A61170;
   color: white;
 }
 
@@ -193,12 +212,12 @@ body {
 
 .linkarrow-true {
   fill:red;
-  stroke:grey;
+  stroke:#E0E0E0;
   stroke-width:5; 
 }
 .linkarrow-false {
   fill:#333333;
-  stroke:grey;
+  stroke:#E0E0E0;
   stroke-width:5; 
 }
 
