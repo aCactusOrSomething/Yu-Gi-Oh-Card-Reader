@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_30_212327) do
     t.string "name_searchable"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_cards_on_card_id", unique: true
   end
 
 end

@@ -1,4 +1,5 @@
 class CardsController < ApplicationController
+  
   def index
     @term = params[:query]
     clean_term =  @term.upcase.gsub(/[^\x00-\x7F]/, ' ')

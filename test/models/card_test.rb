@@ -20,6 +20,10 @@
 #  updated_at      :datetime         not null
 #  card_id         :integer          primary key
 #
+# Indexes
+#
+#  index_cards_on_card_id  (card_id) UNIQUE
+#
 require "test_helper"
 
 class CardTest < ActiveSupport::TestCase
