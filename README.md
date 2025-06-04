@@ -10,7 +10,7 @@ The card text itself is written by [Konami](https://www.yugioh-card.com/), and t
 
 ## How To Use
 
-An active deployment of the website can be found [here](https://ygo-card-reader-beaa7b503767.herokuapp.com/cards). Cards can be searched for by name using the bar at the top.
+An active deployment of the website can be found [here](https://ygo-card-reader-beaa7b503767.herokuapp.com/home?). Cards can be searched for by name using the bar at the top.
 
 ## Development Environment Setup
 
