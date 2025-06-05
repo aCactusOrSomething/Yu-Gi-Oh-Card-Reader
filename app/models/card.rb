@@ -29,7 +29,8 @@
 class Card < ApplicationRecord
   self.primary_key = :card_id
 
-  # card_type helper functions. since card_type is a conglomeration of multiple card types, these check to see if an individual card type applies.
+  # card_type helper functions. since card_type is a conglomeration of multiple card types,
+  # these check to see if an individual card type applies.
   # they're fairly simple, but they make my code further down the line prettier!
 
   def monster?

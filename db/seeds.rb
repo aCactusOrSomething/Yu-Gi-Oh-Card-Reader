@@ -11,9 +11,11 @@
 #   end
 require 'httparty'
 
-# my internal database is seeded by copying an external reference database, specifically the one maintained by ygoprodeck.
+# my internal database is seeded by copying an external reference database,
+# specifically the one maintained by ygoprodeck.
 # https://ygoprodeck.com/api-guide/ is their official guide page for this.
-# the alternative would be to have no database of our own, and instead make API requests for one card every time the user loads a page...
+# the alternative would be to have no database of our own,
+# and instead make API requests for one card every time the user loads a page...
 # but the guide advises against doing this specifically, and instead recommends storing all data locally once pulled.
 
 version_url = 'https://db.ygoprodeck.com/api/v7/checkDBVer.php'
@@ -24,7 +26,7 @@ Rails.logger.debug 'checking ygoprodeck database version...'
 version_res = HTTParty.get(version_url).parsed_response
 version_dom = version_res[0]['database_version']
 
-Rails.logger.debug "version: #{version_dom}"
+Rails.logger.debug { "version: #{version_dom}" }
 
 # we need to compare the big db's version to our own cache of it
 if !AccessDatum.all[0].nil? && (AccessDatum.all[0].database_version >= version_dom.to_d)
@@ -42,10 +44,11 @@ data = response['data']
 Rails.logger.debug 'Data recieved. Seeding local database...'
 # this is for tracking progress.
 i = 0
-Rails.logger.debug "#{i}/#{data.length} "
+Rails.logger.debug { "#{i}/#{data.length} " }
 $stdout.flush
 
-# we want to take each card_dom from the external database, and copy (or update) the corresponding card_sub in our database.
+# we want to take each card_dom from the external database,
+# and copy (or update) the corresponding card_sub in our database.
 data.each do |card_dom|
   card_id = 0
 
@@ -61,10 +64,11 @@ data.each do |card_dom|
 
       # this regex replaces a bunch of characters that can't easily be typed with a " ".
       name_searchable = card_dom['name'].upcase.gsub!(/[^\x00-\x7F]/, ' ')
-      card_sub.name_searchable = if !name_searchable.nil?
-                                   name_searchable
-                                 else # cards that need no substitutions just need to be shifted into uppercase
+      # cards that need no substitutions just need to be shifted into uppercase
+      card_sub.name_searchable = if name_searchable.nil?
                                    card_dom['name'].upcase
+                                 else
+                                   name_searchable
                                  end
     else
       card_sub.name = ''
@@ -151,7 +155,7 @@ data.each do |card_dom|
 
   i += 1
   Rails.logger.debug "\r"
-  Rails.logger.debug "#{i}/#{data.length} "
+  Rails.logger.debug { "#{i}/#{data.length} " }
   $stdout.flush
 end
 Rails.logger.debug "\nall data converted.\n"
