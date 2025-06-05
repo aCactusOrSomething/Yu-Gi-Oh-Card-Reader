@@ -34,7 +34,8 @@ jobs:
         with:
           bundler-cache: true
       # bundler setup
-      - run: bundle install
+      - run: gem uninstall error_highlight
+      - run: gem install error_highlight -v 0.7.0
       # Add or replace database setup steps here
       - name: Set up database schema
         run: bin/rails db:schema:load
@@ -51,7 +52,8 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - run: bundle install
+      - run: gem uninstall error_highlight
+      - run: gem install error_highlight -v 0.7.0
       - name: Generate binstubs
         run: bundle binstubs bundler-audit brakeman rubocop
       # Add or replace any other lints here
