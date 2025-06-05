@@ -85,3 +85,8 @@ gem 'bootswatch', github: 'thomaspark/bootswatch', tag: 'v5.2.3'
 
 # API requests
 gem 'httparty'
+
+# required for github workflow lint validations
+gem 'bundler-audit'
+gem 'brakeman'
+gem 'rubocop'
