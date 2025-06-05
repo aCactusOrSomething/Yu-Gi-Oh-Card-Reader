@@ -20,30 +20,30 @@ version_url = 'https://db.ygoprodeck.com/api/v7/checkDBVer.php'
 cardinfo_url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php'
 
 # first, we should get the database version.
-puts 'checking ygoprodeck database version...'
+Rails.logger.debug 'checking ygoprodeck database version...'
 version_res = HTTParty.get(version_url).parsed_response
 version_dom = version_res[0]['database_version']
 
-puts "version: #{version_dom}"
+Rails.logger.debug "version: #{version_dom}"
 
 # we need to compare the big db's version to our own cache of it
-if !AccessDatum.all[0].nil? and AccessDatum.all[0].database_version >= version_dom.to_d
-  puts 'local DB is up to date. no update necessary.'
+if !AccessDatum.all[0].nil? && (AccessDatum.all[0].database_version >= version_dom.to_d)
+  Rails.logger.debug 'local DB is up to date. no update necessary.'
   return
 end
 
-puts 'update needed.'
+Rails.logger.debug 'update needed.'
 
 # once we know that we're OK to get the big thing, we just do an API request for Everything...
-puts 'pulling data from ygoprodeck...'
+Rails.logger.debug 'pulling data from ygoprodeck...'
 response = HTTParty.get(cardinfo_url).parsed_response
 data = response['data']
 
-puts 'Data recieved. Seeding local database...'
+Rails.logger.debug 'Data recieved. Seeding local database...'
 # this is for tracking progress.
 i = 0
-print "#{i}/#{data.length} "
-STDOUT.flush
+Rails.logger.debug "#{i}/#{data.length} "
+$stdout.flush
 
 # we want to take each card_dom from the external database, and copy (or update) the corresponding card_sub in our database.
 data.each do |card_dom|
@@ -150,14 +150,14 @@ data.each do |card_dom|
   end
 
   i += 1
-  print "\r"
-  print "#{i}/#{data.length} "
+  Rails.logger.debug "\r"
+  Rails.logger.debug "#{i}/#{data.length} "
   $stdout.flush
 end
-print "\nall data converted.\n"
+Rails.logger.debug "\nall data converted.\n"
 
 # now we need to update the AccessDatum with the current version.
 AccessDatum.find_or_create_by(id: 0) do |access_datum|
   access_datum.database_version = version_dom.to_d
 end
-puts 'Seeding complete!'
+Rails.logger.debug 'Seeding complete!'

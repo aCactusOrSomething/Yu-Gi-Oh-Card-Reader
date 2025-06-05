@@ -5,7 +5,7 @@ class CardsController < ApplicationController
     @term = params[:query]
     clean_term = @term.upcase.gsub(/[^\x00-\x7F]/, ' ')
     @cards = []
-    Card.all.each do |card|
+    Card.all.find_each do |card|
       @cards.push(card) if card.name_searchable.include? clean_term
     end
     render :index
