@@ -1,13 +1,12 @@
+# frozen_string_literal: true
+
 class CardsController < ApplicationController
-  
   def index
     @term = params[:query]
-    clean_term =  @term.upcase.gsub(/[^\x00-\x7F]/, ' ')
+    clean_term = @term.upcase.gsub(/[^\x00-\x7F]/, ' ')
     @cards = []
-    for card in Card.all
-      if card.name_searchable.include? clean_term
-        @cards.push(card)
-      end
+    Card.all.each do |card|
+      @cards.push(card) if card.name_searchable.include? clean_term
     end
     render :index
   end
@@ -16,5 +15,4 @@ class CardsController < ApplicationController
     @card = Card.find(params[:card_id])
     render :show
   end
-
 end
