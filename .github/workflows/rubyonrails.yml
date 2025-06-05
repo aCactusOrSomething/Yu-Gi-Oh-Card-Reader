@@ -55,8 +55,10 @@ jobs:
       - run: gem uninstall error_highlight
       - run: gem install error_highlight -v 0.7.0
       - name: Generate binstubs
-        run: bundle binstubs brakeman rubocop
+        run: bundle binstubs
       - run: bundle exec bundler-audit
+      - run: bundle exec brakeman
+      - run: bundle exec rubocop
       # Add or replace any other lints here
       - name: Security audit dependencies
         run: bin/bundler-audit --update
