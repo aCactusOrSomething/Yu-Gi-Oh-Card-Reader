@@ -221,3 +221,15 @@ body {
   stroke-width:5; 
 }
 
+/* https://webaim.org/blog/wcag-2-0-and-link-colors/ was really helpful for finding accessible link colors */
+a {
+  color: #3344dd; 
+}
+
+a:visited {
+  color: #884488;
+}
+
+a:hover, a:visited:hover {
+  color: #bb1122;
+}
