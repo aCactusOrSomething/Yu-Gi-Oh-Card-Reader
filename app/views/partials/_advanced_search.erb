@@ -1,0 +1,49 @@
+<div class="searchbar container">
+  <div> Advanced Search:<br />
+  <%= form_tag(cards_path, method: :get) do %>
+    <%= label_tag(:query, "Name:") %>
+    <%= text_field_tag :query, params[:query] %>
+
+    <%= label_tag :card_type, "Card Type:"%>
+    <%= text_field_tag :card_type, params[:card_type], :class => 'search-form-control'%>
+
+    <%= label_tag :card_attribute, "Attribute:" %>
+    <%= text_field_tag :card_attribute, params[:card_attribute], :class => 'search-form-control'%>
+
+    <%= label_tag :race, "Monster Type:" %>
+    <%= text_field_tag :race, params[:race], :class => 'search-form-control'%>
+
+    <%= label_tag :level, "Level/Rank:" %>
+    <%= text_field_tag :level, params[:level], :class => 'search-form-control'%>
+
+    <%= label_tag :linkval, "Link rating:" %>
+    <%= text_field_tag :linkval, params[:linkval], :class => 'search-form-control'%>
+
+    <%= label_tag :atk, "Attack:" %>
+    <%= text_field_tag :atk, params[:atk], :class => 'search-form-control'%>
+
+    <%= label_tag :def, "Defense:" %>
+    <%= text_field_tag :def, params[:def], :class => 'search-form-control'%>
+
+    <%= label_tag :desc, "Effect Text:" %>
+    <%= text_field_tag :desc, params[:desc], :class => 'search-form-control'%>
+  
+
+    <%= submit_tag ("Go")%>
+  <% end %>
+  
+  </div>
+</div>
+
+<!--
+  search categories:
+  card name
+  category & subcategory
+  attribute
+  type
+  level/rank/link rating
+  attack
+  defense
+  card body
+  link markers
+-->
