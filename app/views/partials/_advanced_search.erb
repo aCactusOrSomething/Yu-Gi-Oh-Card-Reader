@@ -1,49 +1,62 @@
-<div class="searchbar container">
-  <div> Advanced Search:<br />
-  <%= form_tag(cards_path, method: :get) do %>
-    <%= label_tag(:query, "Name:") %>
-    <%= text_field_tag :query, params[:query] %>
+<div class="container">
+  <button class="collapsible search-form-submit search-form-control">Advanced Search:</button>
+  <table id="advanced-search" class="search-form-table collapsible-content">
+    <tbody id="advanced-search-body" >
+      <%= form_tag(cards_path, method: :get) do %>
+        <tr>
+          <td><%= label_tag(:query, "Name:") %></td>
+          <td><%= text_field_tag :query, params[:query], :class => 'search-form-control'%></td>
+        </tr>
 
-    <%= label_tag :card_type, "Card Type:"%>
-    <%= text_field_tag :card_type, params[:card_type], :class => 'search-form-control'%>
+        <tr>
+          <td><%= label_tag :card_type, "Card Type:"%></td>
+          <td><%= text_field_tag :card_type, params[:card_type], :class => 'search-form-control'%></td>
+        </tr>
 
-    <%= label_tag :card_attribute, "Attribute:" %>
-    <%= text_field_tag :card_attribute, params[:card_attribute], :class => 'search-form-control'%>
+        <tr>
+          <td><%= label_tag :card_attribute, "Attribute:" %></td>
+          <td><%= text_field_tag :card_attribute, params[:card_attribute], :class => 'search-form-control'%></td>
+        </tr>
 
-    <%= label_tag :race, "Monster Type:" %>
-    <%= text_field_tag :race, params[:race], :class => 'search-form-control'%>
+        <tr>  
+          <td><%= label_tag :race, "Monster Type:" %></td>
+          <td><%= text_field_tag :race, params[:race], :class => 'search-form-control'%></td>
+        </tr>
 
-    <%= label_tag :level, "Level/Rank:" %>
-    <%= text_field_tag :level, params[:level], :class => 'search-form-control'%>
+        <tr>
+          <td><%= label_tag :level, "Level/Rank:" %></td>
+          <td><%= text_field_tag :level, params[:level], :class => 'search-form-control'%></td>
+        </tr>
 
-    <%= label_tag :linkval, "Link rating:" %>
-    <%= text_field_tag :linkval, params[:linkval], :class => 'search-form-control'%>
+        <tr>
+          <td><%= label_tag :linkval, "Link rating:" %></td>
+          <td><%= text_field_tag :linkval, params[:linkval], :class => 'search-form-control'%></td>
+        </tr>
 
-    <%= label_tag :atk, "Attack:" %>
-    <%= text_field_tag :atk, params[:atk], :class => 'search-form-control'%>
+        <tr>
+          <td><%= label_tag :atk, "Attack:" %></td>
+          <td><%= text_field_tag :atk, params[:atk], :class => 'search-form-control'%></td>
+        </tr>
 
-    <%= label_tag :def, "Defense:" %>
-    <%= text_field_tag :def, params[:def], :class => 'search-form-control'%>
+        <tr>
+          <td><%= label_tag :def, "Defense:" %></td>
+          <td><%= text_field_tag :def, params[:def], :class => 'search-form-control'%></td>
+        </tr>
 
-    <%= label_tag :desc, "Effect Text:" %>
-    <%= text_field_tag :desc, params[:desc], :class => 'search-form-control'%>
+        <tr>
+          <td><%= label_tag :desc, "Effect Text:" %></td>
+          <td><%= text_field_tag :desc, params[:desc], :class => 'search-form-control'%></td>
+        </tr>
+      
+        <tr>
+          <td><%= submit_tag "Go", :class => 'search-form-submit'%></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
   
-
-    <%= submit_tag ("Go")%>
-  <% end %>
   
-  </div>
 </div>
 
-<!--
-  search categories:
-  card name
-  category & subcategory
-  attribute
-  type
-  level/rank/link rating
-  attack
-  defense
-  card body
-  link markers
--->
+<%= javascript_include_tag 'collapsible' %>
