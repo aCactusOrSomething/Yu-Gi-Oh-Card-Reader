@@ -1,0 +1,62 @@
+<div class="container">
+  <button class="collapsible search-form-submit search-form-control">Advanced Search:</button>
+  <table id="advanced-search" class="search-form-table collapsible-content">
+    <tbody id="advanced-search-body" >
+      <%= form_tag(cards_path, method: :get) do %>
+        <tr>
+          <td><%= label_tag(:name_searchable, "Name:") %></td>
+          <td><%= text_field_tag :name_searchable, params[:name_searchable], :class => 'search-form-control'%></td>
+        </tr>
+
+        <tr>
+          <td><%= label_tag :card_type, "Card Type:"%></td>
+          <td><%= text_field_tag :card_type, params[:card_type], :class => 'search-form-control'%></td>
+        </tr>
+
+        <tr>
+          <td><%= label_tag :card_attribute, "Attribute:" %></td>
+          <td><%= text_field_tag :card_attribute, params[:card_attribute], :class => 'search-form-control'%></td>
+        </tr>
+
+        <tr>  
+          <td><%= label_tag :race, "Monster Type:" %></td>
+          <td><%= text_field_tag :race, params[:race], :class => 'search-form-control'%></td>
+        </tr>
+
+        <tr>
+          <td><%= label_tag :level, "Level/Rank:" %></td>
+          <td><%= number_field_tag :level, params[:level], :class => 'search-form-control'%></td>
+        </tr>
+
+        <tr>
+          <td><%= label_tag :linkval, "Link rating:" %></td>
+          <td><%= number_field_tag :linkval, params[:linkval], :class => 'search-form-control'%></td>
+        </tr>
+
+        <tr>
+          <td><%= label_tag :atk, "Attack:" %></td>
+          <td><%= number_field_tag :atk, params[:atk], :class => 'search-form-control'%></td>
+        </tr>
+
+        <tr>
+          <td><%= label_tag :def, "Defense:" %></td>
+          <td><%= number_field_tag :def, params[:def], :class => 'search-form-control'%></td>
+        </tr>
+
+        <tr>
+          <td><%= label_tag :desc, "Effect Text:" %></td>
+          <td><%= text_field_tag :desc, params[:desc], :class => 'search-form-control'%></td>
+        </tr>
+      
+        <tr>
+          <td><%= submit_tag "Go", :class => 'search-form-submit'%></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  
+</div>
+
+<%= javascript_include_tag 'collapsible' %>

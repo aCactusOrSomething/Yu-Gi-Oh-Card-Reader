@@ -77,7 +77,9 @@ body {
   display: inline;
 }
 
-.searchbar form input[name=commit], .searchbar button {
+.searchbar form input[name=commit],
+.searchbar button,
+.search-form-submit {
   border: 2px solid #777777;
   border-radius: 4px;
   background-color: #eeeeee;
@@ -91,16 +93,43 @@ body {
   min-height: 44px;
 }
 
-.searchbar form input[name=query] {
+.searchbar form input[name=name_searchable],
+.search-form-control {
   min-width: 44px;
   min-height: 44px;
   border: 2px solid #777777;
   border-radius: 4px;
 }
 
-.searchbar form input[name=commit]:hover, .searchbar button:hover {
+.searchbar form input[name=commit]:hover,
+.searchbar button:hover,
+.search-form-submit:hover {
   background-color: #87CEEB;
-} 
+}
+
+.collapsible {
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  display: inline-block;
+}
+
+.collapsible-content {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
+  display: none;
+}
+
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
 
 
 //focus indicator reccommended by https://www.sarasoueidan.com/blog/focus-indicators/#a-%E2%80%98universal%E2%80%99-focus-indicator
