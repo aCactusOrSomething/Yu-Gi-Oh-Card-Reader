@@ -181,15 +181,12 @@ function applyKeyWords(words, transform) {
     trimmedWord = words[i].trim().replace(/[.,\/#!$%\^&\*;:{}=\_`~()]/g, "").toLowerCase()
     keyword = KEYWORDS[trimmedWord]
     if (keyword != null) {
-      //console.log('True')
       
       //only push to keyword_links if it's not already in there
       ret = transform(trimmedWord, keyword)
       if(!keyword_links.includes(ret)) {
         keyword_links.push(transform(trimmedWord, keyword))
       }
-    } else {
-      //console.log('False')
     }
   }
   return words

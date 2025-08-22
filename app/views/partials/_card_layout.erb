@@ -1,0 +1,13 @@
+<section class="outputContainer" id="output_temp">
+
+
+  <%# rendering %>
+  <% segments.each do |segment| %>
+    <%= render partial: "partials/sentence_fragment",
+      locals: {
+        fragment: segment[0],
+        segment: segment.drop(1)
+      }
+    %>
+  <% end %>
+</section>
