@@ -88,6 +88,8 @@ module CardsHelper
     "atkdef"=> "attack and defense" 
   }
 
+  SANITIZER_REGEX = /[.,\/\#!$%\^&\*;:{}=\_`~()]/
+
   # splits a string into an array of strings, based on specified delimiters.
   # ignores when those delimiters are within double quotation marks("").
   # str: the input string
@@ -153,7 +155,7 @@ module CardsHelper
   def applyTransformations words, targets, transform, transformFirst: nil, visited: []
     ret = []
     for word in words
-      sanitized_word = word.strip.downcase.gsub(/[.,\/\#!$%\^&\*;:{}=\_`~()]/, "")
+      sanitized_word = word.strip.downcase.gsub(SANITIZER_REGEX, "")
       if (targets.key? sanitized_word)
         if (transformFirst == nil) || (visited.include? sanitized_word)
           word = transform.call(word, targets[sanitized_word])
@@ -171,7 +173,7 @@ module CardsHelper
     # transform in this case shouldn't actually transform the word anymore! ain't that weird.
     @keyWordList = []
     def transformFirst word, keyword
-      @keyWordList.append "<li><a href=\"#{keyword}\">#{word.downcase}</a></li>"
+      @keyWordList.append "<li><a href=\"#{keyword}\">#{word.strip.downcase.gsub(SANITIZER_REGEX, "")}</a></li>"
       word
     end
     def transform word, keyword
