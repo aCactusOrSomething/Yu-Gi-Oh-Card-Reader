@@ -1,6 +1,7 @@
 <% content_for :title, @card.name + " - Yugioh Card Viewer" %>
 
 <article id="card" class="frametype-<%= @card.frameType %>" >
+  <% segments, keyWordList = analyzeCardDesc(@card.desc)%>
 
   <div class="flex-container">
     <!-- Card Info! -->
@@ -116,30 +117,19 @@
       </div>
     <%end%>
   </div>
-  
-  <h3>JAVASCRIPT OUTPUT:</h3>
-  <section class="outputContainer" id="output"></section>
-  <h3>RUBY OUTPUT:</h3>
-  <% segments, keyWordList = analyzeCardDesc(@card.desc)%>
+
   <%= render partial: "partials/card_layout",
     locals: { 
       segments: segments 
     }
   %>
 </article>
+
 <article id="keywords">
   Detected keywords:
-</article>
-<article id="keywords_temp">
-  Detected keywords Ruby:
   <ul>
     <% keyWordList.each do |keyword| %>
       <%= sanitize keyword %>
     <% end %>
   </ul>
 </article>
-
-<div style="display:none; visibility:hidden" id="values" cardDesc="<%= @card.desc %>">
-</div>
-
-<%= javascript_include_tag 'main_card' %>
