@@ -151,7 +151,6 @@ module CardsHelper
   # transformFirst: the same as transform, but only applies to the first appearance of a specific word.
   # visited: a list of transformations that have already been applied - meant to help with transformFirst.
   def applyTransformations words, targets, transform, transformFirst: nil, visited: []
-    puts "visited: #{visited}"
     ret = []
     for word in words
       sanitized_word = word.strip.downcase.gsub(/[.,\/\#!$%\^&\*;:{}=\_`~()]/, "")
@@ -168,14 +167,18 @@ module CardsHelper
     [ret, visited]
   end
 
-  def applyKeyWords words
+  def applyKeyWords words, visitedKeywords: []
     # transform in this case shouldn't actually transform the word anymore! ain't that weird.
     @keyWordList = []
-    def transform word, keyword
-      @keyWordList.append "<li><a href=\"#{keyword}\">#{word}</a></li>"
+    def transformFirst word, keyword
+      @keyWordList.append "<li><a href=\"#{keyword}\">#{word.downcase}</a></li>"
       word
     end
-    [applyTransformations(words, KEYWORDS, method(:transform))[0], @keyWordList]
+    def transform word, keyword
+      word
+    end
+    ret = applyTransformations(words, KEYWORDS, method(:transform), transformFirst: method(:transformFirst), visited: visitedKeywords).append(@keyWordList)
+    ret
   end
 
   def applyAbbreviations words, visitedAbbreviations: []
@@ -195,18 +198,21 @@ module CardsHelper
     sentences = getSentences(desc)
     segments = []
     visitedAbbreviations = []
+    visitedKeywords = []
+    keyWordList = []
     sentences.each do |sentence|
       clauses = getClauses(sentence)
       newClauses = []
       clauses.each do |clause|
         words = getWords(clause)
         words, visitedAbbreviations = applyAbbreviations(words, visitedAbbreviations: visitedAbbreviations)
-        words, keyWordList = applyKeyWords(words)
+        words, visitedKeywords, newKeywords = applyKeyWords(words, visitedKeywords: visitedKeywords)
 
+        keyWordList.concat(newKeywords)
         newClauses.append wordsToClause(words)
       end
       segments.append newClauses
     end
-    segments
+    [segments, keyWordList]
   end
 end
