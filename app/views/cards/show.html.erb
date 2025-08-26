@@ -1,4 +1,4 @@
-<% content_for :title, @card.name + " - Yugioh Card Viewer" %>
+<% content_for :title, @card.name + " - Yugioh Card Reader" %>
 
 <article id="card" class="frametype-<%= @card.frameType %>" >
   <% segments, keyWordList = analyzeCardDesc(@card.desc)%>

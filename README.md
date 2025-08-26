@@ -1,4 +1,4 @@
-# YUGIOH CARD VIEWER
+# YUGIOH CARD READER
 
 ## About
 
