@@ -66,7 +66,6 @@ module CardsHelper
     "equip"=> "https://yugipedia.com/wiki/Equip_Spell_Card",
     "field"=> "https://yugipedia.com/wiki/Field_Spell_Card",
     "quick-play"=> "https://yugipedia.com/wiki/Quick-Play_Spell_Card",
-    "ritual"=> "https://yugipedia.com/wiki/Ritual_Spell_Card",
     "token"=> "https://yugipedia.com/wiki/Monster_Token",
     "lp"=> "https://yugipedia.com/wiki/LP",
     "damage"=> "https://yugipedia.com/wiki/Damage",
