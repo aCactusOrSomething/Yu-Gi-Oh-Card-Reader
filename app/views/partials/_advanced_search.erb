@@ -1,5 +1,5 @@
-<div class="container">
-  <button class="collapsible search-form-submit search-form-control">Advanced Search:</button>
+<div class="container" id="advanced-search-container">
+  <button class="collapsible search-form-submit search-form-control">Advanced Search: <i>(click to expand)</i></button>
   <table id="advanced-search" class="search-form-table collapsible-content">
     <tbody id="advanced-search-body" >
       <%= form_tag(cards_path, method: :get) do %>
