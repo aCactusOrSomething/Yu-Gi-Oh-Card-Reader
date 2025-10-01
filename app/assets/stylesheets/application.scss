@@ -61,7 +61,7 @@ body {
   margin: 4px;
   padding: 4px;
   border: solid;
-  max-width: fit-content;
+  max-width: 100%;
   background-color: white; 
   color: black;
 }
@@ -115,6 +115,10 @@ body {
   border-radius: 4px;
   padding: 0;
   border-bottom: none;
+}
+
+#advanced-search {
+  padding: 1.5em;
 }
 
 .collapsible {
