@@ -77,6 +77,11 @@ body {
   display: inline;
 }
 
+.searchbar {
+  width: 100%;
+
+}
+
 .searchbar form input[name=commit],
 .searchbar button,
 .search-form-submit {
@@ -119,6 +124,21 @@ body {
 
 #advanced-search {
   padding: 1.5em;
+}
+
+#name_searchable {
+  /* Firefox */
+  width: -moz-calc(100% - 175px);
+  /* WebKit */
+  width: -webkit-calc(100% - 175px);
+  /* Opera */
+  width: -o-calc(100% - 175px);
+  /* Standard */
+  width: calc(100% - 175px);
+}
+
+.navbar-button {
+  //float: right;
 }
 
 .collapsible {

@@ -1,7 +1,7 @@
 module CardsHelper
 
   # TODO: 2-word keywords do not work as currently implemented.
-  # TODO: move this to a seperate file.
+  # TODO: move this to a separate file.
   KEYWORDS = {
     "monster"=> "https://yugipedia.com/wiki/Monster_Card",
     "spell"=> "https://yugipedia.com/wiki/Spell_Card",

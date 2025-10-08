@@ -17,14 +17,18 @@
     <nav class="searchbar container">
       <%= form_tag(cards_path, method: :get) do %>
       <%= label_tag(:name_searchable, "Search:") %>
-        <%= text_field_tag :name_searchable, params[:name_searchable] %>
-        <%= submit_tag ("Go")%>
+        <span><%= text_field_tag :name_searchable, params[:name_searchable] %></span>
+        <%= submit_tag "Go", class: "navbar-button"%>
       <% end %>
-      <%= button_to "Home", home_path, :method => "get" %>
+      <%= button_to "Home", home_path, :method => "get", class: "navbar-button"%>
     </nav>
+
+     
     <main role="main" class="container">
       <%= yield %>
     </main>
+
+
     <footer class="container">
       <i>The database used for card information is maintained by <a href="https://ygoprodeck.com/">YGOProDeck.com</a>.<br/>
       Links to keyword information go to <a href="https://yugipedia.com/wiki/Yugipedia">Yugipedia.com</a>.<br/>
