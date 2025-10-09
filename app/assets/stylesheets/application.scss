@@ -107,6 +107,13 @@ body {
   background-color: #87CEEB;
 }
 
+input[type=number] {
+  /* TODO: NUMBER STYLING
+    probably want it to be less wide so that it doesnt look like a text input?
+  */
+  width: 4em;
+}
+
 .collapsible {
   color: #444;
   cursor: pointer;
