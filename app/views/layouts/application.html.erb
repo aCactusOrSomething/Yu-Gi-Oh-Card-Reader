@@ -17,7 +17,7 @@
     <nav class="searchbar container">
       <%= form_tag(cards_path, method: :get) do %>
       <%= label_tag(:name_searchable, "Search:") %>
-        <span><%= text_field_tag :name_searchable, params[:name_searchable] %></span>
+        <span><%= text_field_tag :name_searchable, params[:name_searchable], id: "searchbar-textbox" %></span>
         <%= submit_tag "Go", class: "navbar-button"%>
       <% end %>
       <%= button_to "Home", home_path, :method => "get", class: "navbar-button"%>

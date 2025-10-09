@@ -126,7 +126,7 @@ body {
   padding: 1.5em;
 }
 
-#name_searchable {
+#searchbar-textbox {
   /* Firefox */
   width: -moz-calc(100% - 175px);
   /* WebKit */
@@ -135,10 +135,6 @@ body {
   width: -o-calc(100% - 175px);
   /* Standard */
   width: calc(100% - 175px);
-}
-
-.navbar-button {
-  //float: right;
 }
 
 .collapsible {
