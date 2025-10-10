@@ -137,6 +137,10 @@ body {
   width: calc(100% - 175px);
 }
 
+input[type=number] {
+  width: 4em;
+}
+
 .collapsible {
   cursor: pointer;
   padding: 18px;
