@@ -61,7 +61,7 @@ body {
   margin: 4px;
   padding: 4px;
   border: solid;
-  max-width: fit-content;
+  max-width: 100%;
   background-color: white; 
   color: black;
 }
@@ -75,6 +75,11 @@ body {
 /* doing weird stuff to target the navbar styling */
 .searchbar * {
   display: inline;
+}
+
+.searchbar {
+  width: 100%;
+
 }
 
 .searchbar form input[name=commit],
@@ -94,7 +99,8 @@ body {
 }
 
 .searchbar form input[name=name_searchable],
-.search-form-control {
+.search-form-control,
+.collapsible {
   min-width: 44px;
   min-height: 44px;
   border: 2px solid #777777;
@@ -103,43 +109,69 @@ body {
 
 .searchbar form input[name=commit]:hover,
 .searchbar button:hover,
-.search-form-submit:hover {
+.search-form-submit:hover,
+.collapsible:hover {
   background-color: #87CEEB;
 }
 
+#advanced-search-container {
+  //background-color: #eee;
+  border: 2px solid #777777;
+  border-radius: 4px;
+  padding: 0;
+  border-bottom: none;
+}
+
+#advanced-search {
+  padding: 1.5em;
+}
+
+#searchbar-textbox {
+  /* Firefox */
+  width: -moz-calc(100% - 175px);
+  /* WebKit */
+  width: -webkit-calc(100% - 175px);
+  /* Opera */
+  width: -o-calc(100% - 175px);
+  /* Standard */
+  width: calc(100% - 175px);
+}
+
 input[type=number] {
-  /* TODO: NUMBER STYLING
-    probably want it to be less wide so that it doesnt look like a text input?
-  */
   width: 4em;
 }
 
 .collapsible {
-  color: #444;
   cursor: pointer;
   padding: 18px;
   width: 100%;
-  border: none;
   text-align: left;
   outline: none;
   font-size: 15px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   display: inline-block;
 }
 
 .collapsible-content {
   overflow: hidden;
   max-height: 0;
-  transition: max-height 0.2s ease-out;
   display: none;
+  
 }
 
-.active, .collapsible:hover {
+.collapsible-content-visible {
+  max-height: 100%;
+  display: block;
+  border-bottom: 2px solid #777777;
+}
+
+.active {
   background-color: #ccc;
 }
 
-
-
-//focus indicator reccommended by https://www.sarasoueidan.com/blog/focus-indicators/#a-%E2%80%98universal%E2%80%99-focus-indicator
+//focus indicator recommended by https://www.sarasoueidan.com/blog/focus-indicators/#a-%E2%80%98universal%E2%80%99-focus-indicator
 :focus-visible {
   outline: 3px solid black;
   box-shadow: 0 0 0 6px white;
