@@ -1,5 +1,6 @@
 <div class="container" id="advanced-search-container">
   <button class="collapsible search-form-submit search-form-control">Advanced Search: <i>(click to expand)</i></button>
+
   <table id="advanced-search" class="search-form-table collapsible-content">
     <tbody id="advanced-search-body" >
       <%= form_tag(cards_path, method: :get) do %>
@@ -10,17 +11,17 @@
 
         <tr>
           <td><%= label_tag :card_type, "Card Type:"%></td>
-          <td><%= text_field_tag :card_type, params[:card_type], :class => 'search-form-control'%></td>
+          <td><%= text_field_tag :card_type, params[:card_type], :class => 'search-form-control', list: "card-type-datalist"%></td>
         </tr>
 
         <tr>
           <td><%= label_tag :card_attribute, "Attribute:" %></td>
-          <td><%= text_field_tag :card_attribute, params[:card_attribute], :class => 'search-form-control'%></td>
+          <td><%= text_field_tag :card_attribute, params[:card_attribute], :class => 'search-form-control', list: "card-attribute-datalist"%></td>
         </tr>
 
         <tr>  
           <td><%= label_tag :race, "Monster Type:" %></td>
-          <td><%= text_field_tag :race, params[:race], :class => 'search-form-control'%></td>
+          <td><%= text_field_tag :race, params[:race], :class => 'search-form-control', list: "card-race-datalist" %></td>
         </tr>
 
         <tr>
@@ -58,5 +59,23 @@
   
   
 </div>
+
+<datalist id="card-type-datalist">
+  <% Card::CARD_TYPES.each do |option|%>
+    <option value="<%= option %>" />
+  <% end %>
+</datalist>
+
+<datalist id="card-attribute-datalist">
+  <% Card::CARD_ATTRIBUTES.each do |option|%>
+    <option value="<%= option %>" />
+  <% end %>
+</datalist>
+
+<datalist id="card-race-datalist">
+  <% Card::CARD_RACE.each do |option|%>
+    <option value="<%= option %>" />
+  <% end %>
+</datalist>
 
 <%= javascript_include_tag 'collapsible' %>

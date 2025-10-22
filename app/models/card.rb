@@ -27,17 +27,85 @@
 class Card < ApplicationRecord
   self.primary_key = :card_id
 
+  # TODO: is there a way to make this data generate automatically when seeding?
+  # that way, I won't have to update it manually if the game changes.
+
+  # all possible card types
+  CARD_TYPES = [
+    "token",
+    "monster",
+    "normal",
+    "effect",
+    "fusion",
+    "ritual",
+    "synchro",
+    "xyz",
+    "link",
+    "pendulum",
+
+    "union",
+    "flip",
+    "spirit",
+    "gemini",
+    "toon",
+    "tuner",
+
+    "spell",
+    "quick-play",
+    "continuous",
+    "field",
+
+    "trap",
+    "counter",
+  ]
+
+  # all possible monster attributes
+  CARD_ATTRIBUTES = [
+    "LIGHT",
+    "DARK",
+    "EARTH",
+    "FIRE",
+    "WATER",
+    "WIND",
+    "DIVINE"
+  ]
+
+  # all possible monster tribes
+  CARD_RACE = [
+    "beast-warrior",
+    "zombie",
+    "fiend",
+    "dinosaur",
+    "dragon",
+    "beast",
+    "illusion",
+    "insect",
+    "winged beast",
+    "warrior",
+    "sea serpent",
+    "machine",
+    "aqua",
+    "pyro",
+    "thunder",
+    "spellcaster",
+    "plant",
+    "rock",
+    "reptile",
+    "fairy",
+    "fish",
+    "divine-beast",
+    "psychic",
+    "creator god",
+    "wyrm",
+    "cyberse"
+  ]
+
   # card_type helper functions. since card_type is a conglomeration of multiple card types, these check to see if an individual card type applies.
   # they're fairly simple, but they make my code further down the line prettier!
-
-
   def monster?
     card_type.include? "Monster"
   end
 
-  # i break convention on Effect and Normal cards, because i think they'd be more confusing otherwise.
-  # strictly speaking, all "Effect" type cards are monsters, but spells and traps still have effects...
-  # and normal spells/ normal traps exist also, and those mean completely different things and aren't defined as types.
   def effect_monster?
     card_type.include? "Effect"
   end
