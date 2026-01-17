@@ -156,13 +156,13 @@ data.each{ |card_dom|
     else
       card_sub.art_url = 'https://images.ygoprodeck.com/images/cards_cropped/' + card_sub.card_id + '.jpg'
     end
-    print(card_sub.art_url)
+    puts(card_sub.art_url)
   end
 
-  i = i + 1
-  print "\r"
-  print i.to_s + "/" + data.length().to_s + "\s"
-  STDOUT.flush
+  # i = i + 1
+  # print "\r"
+  # print i.to_s + "/" + data.length().to_s + "\s"
+  # STDOUT.flush
 }
 print "\nall data converted.\n"
 
