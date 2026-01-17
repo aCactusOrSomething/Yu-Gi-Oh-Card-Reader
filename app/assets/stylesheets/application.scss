@@ -182,6 +182,15 @@ input[type=number] {
   margin-right: 5em;
 }
 
+#card-image-container {
+  padding-left: 1em;
+}
+
+#card-image-container * {
+  width: 150px;
+  height: 150px;
+}
+
 .constrain {
   max-width: 80em;
 }

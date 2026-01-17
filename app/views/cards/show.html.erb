@@ -116,8 +116,9 @@
         </svg>
       </div>
     <%end%>
-
-    <%= image_tag 'placeholder.png', style: 'height: 150px;width:150px' %>
+    <div id="card-image-container">
+      <%= image_tag 'placeholder.png' %>
+    </div>
   </div>
 
   <%= render partial: "partials/card_layout",
