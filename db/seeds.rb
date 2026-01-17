@@ -156,6 +156,7 @@ data.each{ |card_dom|
     else
       card_sub.art_url = 'https://images.ygoprodeck.com/images/cards_cropped/' + card_sub.card_id + '.jpg'
     end
+    print(card_sub.art_url)
   end
 
   i = i + 1
