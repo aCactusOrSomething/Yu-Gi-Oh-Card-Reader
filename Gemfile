@@ -85,3 +85,7 @@ gem 'bootswatch', github: 'thomaspark/bootswatch', tag: 'v5.2.3'
 
 # API requests
 gem 'httparty'
+
+# image storage
+gem 'aws-sdk-s3', '~> 1'
+gem "openssl", "3.3.1"

@@ -115,8 +115,16 @@
           /> 
         </svg>
       </div>
-    <%end%>
-    
+    <% end %>
+
+    <!-- Card Art! -->
+    <div id="card-image-container">
+      <% if @card.art.attached? %>
+        <%= image_tag url_for(@card.art), alt: 'card artwork' %>
+      <% else %>
+        <%= image_tag 'placeholder.png', alt: 'placeholder card artwork' %>
+      <% end %>
+    </div>
   </div>
 
   <%= render partial: "partials/card_layout",
