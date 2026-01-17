@@ -170,4 +170,4 @@ print "\nall data converted.\n"
 AccessDatum.find_or_create_by(id: 0) do |access_datum|
   access_datum.database_version = version_dom.to_d
 end
-puts 'Seeding complete!'
+puts 'Seeding complete! updated'
