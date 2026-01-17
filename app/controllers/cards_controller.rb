@@ -32,6 +32,12 @@ class CardsController < ApplicationController
 
   def show
     @card = Card.find(params[:card_id])
+    # check to see if the card has an image
+    if not @card.art.attached?
+      # if not, attempt to download the image
+      @card.attach_file(@card.art_url, :art, @card.card_id.to_s)
+    end
+    # render should go through EVEN IF the image download fails
     render :show
   end
   

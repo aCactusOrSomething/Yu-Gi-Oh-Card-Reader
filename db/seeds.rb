@@ -149,6 +149,13 @@ data.each{ |card_dom|
     else
       card_sub.level = 0
     end
+
+    # art url
+    if(card_dom.key?('card_images'))
+      card_sub.art_url = card_dom['card_images'][0]['image_url_cropped']
+    else
+      card_sub.art_url = 'https://images.ygoprodeck.com/images/cards_cropped/' + card_sub.card_id + '.jpg'
+    end
   end
 
   i = i + 1

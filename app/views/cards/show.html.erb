@@ -115,9 +115,15 @@
           /> 
         </svg>
       </div>
-    <%end%>
+    <% end %>
+
+    <!-- Card Art! -->
     <div id="card-image-container">
-      <%= image_tag 'placeholder.png' %>
+      <% if @card.art.attached? %>
+        <%= image_tag url_for(@card.art), alt: 'card artwork' %>
+      <% else %>
+        <%= image_tag 'placeholder.png', alt: 'placeholder card artwork' %>
+      <% end %>
     </div>
   </div>
 
