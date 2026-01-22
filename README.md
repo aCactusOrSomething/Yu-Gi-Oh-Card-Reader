@@ -16,6 +16,10 @@ The card text itself is written by [Konami](https://www.yugioh-card.com/), and t
 
 This project is licensed under the [Apache-2.0 License](https://github.com/aCactusOrSomething/Yu-Gi-Oh-Card-Reader/blob/main/LICENSE).
 
+## Feedback
+
+You can submit feedback for the website via [This Google Form](https://forms.gle/1KAHgsLxkK3tVMMP6).
+
 ### Far Future Goals
 
 * Rewrite text processing algorithm entirely.
