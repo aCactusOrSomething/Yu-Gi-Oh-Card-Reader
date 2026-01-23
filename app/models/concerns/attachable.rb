@@ -8,7 +8,7 @@ module Attachable
     decoded_file = Base64.decode64(encoded_file)
     extension = Rack::Mime::MIME_TYPES.invert[mime_type]
 
-    self.send(association).attach(
+    send(association).attach(
       io: StringIO.new(decoded_file),
       filename: filename + extension,
       content_type: mime_type

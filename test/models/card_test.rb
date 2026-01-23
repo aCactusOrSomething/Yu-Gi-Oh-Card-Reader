@@ -26,7 +26,7 @@
 #  index_cards_on_card_id  (card_id) UNIQUE
 #
 
-require "test_helper"
+require 'test_helper'
 
 class CardTest < ActiveSupport::TestCase
   # test "the truth" do

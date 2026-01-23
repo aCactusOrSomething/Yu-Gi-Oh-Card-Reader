@@ -18,6 +18,6 @@ class CreateCards < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
-    add_index :cards, :card_id, unique:true
+    add_index :cards, :card_id, unique: true
   end
 end
