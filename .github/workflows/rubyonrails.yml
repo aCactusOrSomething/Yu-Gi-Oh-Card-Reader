@@ -41,7 +41,7 @@ jobs:
           bundle install --jobs 4 --retry 3
       # Add or replace database setup steps here
       - name: Set up database schema
-        run: bin/rails db:schema:load
+        run: bundle exec bin/rails db:schema:load
       # Add or replace test runners here
       - name: Run tests
         run: bin/rake
