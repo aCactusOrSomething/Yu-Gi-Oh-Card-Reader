@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
+# controls accessing both individual card pages and the search tool (displaying a filtered list of cards).
 class CardsController < ApplicationController
   def index
     @cards = Card.all
     @term = params[:name_searchable]
 
     params.each do |key, value|
-      unless !value.nil? && (key != 'commit') && (key != 'controller') && (key != 'action') && (value != 0) && (value != '')
-        next
-      end
+      next unless is_exempt(value, key)
 
       new_cards = []
       type = Card.column_for_attribute(key).type
@@ -38,5 +37,11 @@ class CardsController < ApplicationController
     end
     # render should go through EVEN IF the image download fails
     render :show
+  end
+
+  private
+
+  def is_exempt(value, key)
+    !value.nil? && (key != 'commit') && (key != 'controller') && (key != 'action') && (value != 0) && (value != '')
   end
 end
