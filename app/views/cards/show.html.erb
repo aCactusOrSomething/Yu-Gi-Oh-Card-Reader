@@ -1,6 +1,7 @@
-<% content_for :title, @card.name + " - Yugioh Card Viewer" %>
+<% content_for :title, @card.name + " - Yugioh Card Reader" %>
 
 <article id="card" class="frametype-<%= @card.frameType %>" >
+  <% segments, keyWordList = analyzeCardDesc(@card.desc)%>
 
   <div class="flex-container">
     <!-- Card Info! -->
@@ -114,16 +115,30 @@
           /> 
         </svg>
       </div>
-    <%end%>
+    <% end %>
+
+    <!-- Card Art! -->
+    <div id="card-image-container">
+      <% if @card.art.attached? %>
+        <%= image_tag url_for(@card.art), alt: 'card artwork' %>
+      <% else %>
+        <%= image_tag 'placeholder.png', alt: 'placeholder card artwork' %>
+      <% end %>
+    </div>
   </div>
-  
-  <section class="outputContainer" id="output"></section>
+
+  <%= render partial: "partials/card_layout",
+    locals: { 
+      segments: segments 
+    }
+  %>
 </article>
+
 <article id="keywords">
   Detected keywords:
+  <ul>
+    <% keyWordList.each do |keyword| %>
+      <%= sanitize keyword %>
+    <% end %>
+  </ul>
 </article>
-
-<div style="display:none; visibility:hidden" id="values" cardDesc="<%= @card.desc %>">
-</div>
-
-<%= javascript_include_tag 'main_card' %>

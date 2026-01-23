@@ -3,6 +3,7 @@
 # Table name: cards
 #
 #  id              :bigint           not null
+#  art_url         :string
 #  atk             :integer
 #  card_attribute  :string
 #  card_type       :string
@@ -25,7 +26,10 @@
 #  index_cards_on_card_id  (card_id) UNIQUE
 #
 class Card < ApplicationRecord
+  include Attachable
+  
   self.primary_key = :card_id
+  has_one_attached :art
 
   # card_type helper functions. since card_type is a conglomeration of multiple card types, these check to see if an individual card type applies.
   # they're fairly simple, but they make my code further down the line prettier!

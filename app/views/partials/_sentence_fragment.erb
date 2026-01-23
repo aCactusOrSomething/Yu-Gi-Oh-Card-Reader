@@ -1,0 +1,12 @@
+<div class="sentence">
+  <%= sanitize fragment %>
+  <% if not segment.blank? %>
+    <%= 
+      render partial: "partials/sentence_fragment",
+      locals: {
+        fragment: segment[0],
+        segment: segment.drop(1)
+      }
+    %>
+  <% end %>
+</div>

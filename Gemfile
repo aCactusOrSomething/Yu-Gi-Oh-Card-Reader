@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.3.6"
+ruby "3.3.10"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.5", ">= 7.1.5.1"
@@ -85,3 +85,7 @@ gem 'bootswatch', github: 'thomaspark/bootswatch', tag: 'v5.2.3'
 
 # API requests
 gem 'httparty'
+
+# image storage
+gem 'aws-sdk-s3', '~> 1'
+gem "openssl", "3.3.1"

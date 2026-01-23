@@ -16,16 +16,22 @@
   <body>
     <nav class="searchbar container">
       <%= form_tag(cards_path, method: :get) do %>
-        <%= text_field_tag :query, params[:query] %>
-        <%= submit_tag ("Search")%>
+      <%= label_tag(:name_searchable, "Search:") %>
+        <span><%= text_field_tag :name_searchable, params[:name_searchable], class: "searchbar-textbox" %></span>
+        <%= submit_tag "Go", class: "navbar-button"%>
       <% end %>
-      <%= button_to "Home", home_path, :method => "get" %>
+      <%= button_to "Home", home_path, :method => "get", class: "navbar-button"%>
     </nav>
+
+     
     <main role="main" class="container">
       <%= yield %>
     </main>
+
+
     <footer class="container">
-      <i>The database used for card information is maintained by <a href="https://ygoprodeck.com/">YGOProDeck.com</a>.<br/>
+      <i>
+        The database used for card information is maintained by <a href="https://ygoprodeck.com/">YGOProDeck.com</a>.<br/>
       Links to keyword information go to <a href="https://yugipedia.com/wiki/Yugipedia">Yugipedia.com</a>.<br/>
       The official Yugioh website can be found at <a href="https://www.yugioh-card.com/">yugioh-card.com</a>.<br/>
       This website is not produced by, endorsed by, supported by, or affiliated with 4k Media or Konami Digital Entertainment.<br/></i>

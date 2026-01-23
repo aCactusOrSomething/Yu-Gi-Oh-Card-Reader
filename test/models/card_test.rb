@@ -3,6 +3,7 @@
 # Table name: cards
 #
 #  id              :bigint           not null
+#  art_url         :string
 #  atk             :integer
 #  card_attribute  :string
 #  card_type       :string
