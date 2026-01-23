@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CardsHelper
   # TODO: 2-word keywords do not work as currently implemented.
   # TODO: move this to a separate file.
@@ -73,7 +75,7 @@ module CardsHelper
     'control' => 'https://yugipedia.com/wiki/Control',
     'controls' => 'https://yugipedia.com/wiki/Control',
     'owner' => 'https://yugipedia.com/wiki/Owner'
-  }
+  }.freeze
 
   ABBREVIATIONS = {
     'atk' => 'attack',
@@ -84,7 +86,7 @@ module CardsHelper
     # "ATK/DEF" cannot easily be read as a keyword
     # this is a duct tape solution but it works fine enough
     'atkdef' => 'attack and defense'
-  }
+  }.freeze
 
   SANITIZER_REGEX = %r{[.,/\#!$%\^&*;:{}=_`~()]}
 
@@ -133,8 +135,8 @@ module CardsHelper
 
   def wordsToClause(words)
     ret = ''
-    for w in words
-      ret += w + ' '
+    words.each do |w|
+      ret += "#{w} "
     end
     ret
   end
@@ -149,7 +151,7 @@ module CardsHelper
   # visited: a list of transformations that have already been applied - meant to help with transformFirst.
   def applyTransformations(words, targets, transform, transformFirst: nil, visited: [])
     ret = []
-    for word in words
+    words.each do |word|
       sanitized_word = word.strip.downcase.gsub(SANITIZER_REGEX, '')
       if targets.key? sanitized_word
         if transformFirst.nil? || (visited.include? sanitized_word)

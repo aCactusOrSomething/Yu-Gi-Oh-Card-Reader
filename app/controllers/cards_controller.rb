@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class CardsController < ApplicationController
   def index
     @cards = Card.all
     @term = params[:name_searchable]
 
     params.each do |key, value|
-      unless !value.nil? and key != 'commit' and key != 'controller' and key != 'action' and value != 0 and value != ''
+      unless !value.nil? && (key != 'commit') && (key != 'controller') && (key != 'action') && (value != 0) && (value != '')
         next
       end
 
@@ -13,12 +15,12 @@ class CardsController < ApplicationController
       puts "#{key} is #{type}"
       if type.to_s == 'string'
         clean_term =  value.upcase.gsub(/[^\x00-\x7F]/, ' ')
-        for card in @cards
+        @cards.each do |card|
           clean_target = card[key].upcase.gsub(/[^\x00-\x7F]/, ' ')
           new_cards.push(card) if clean_target.include? clean_term
         end
       elsif type.to_s == 'integer'
-        for card in @cards
+        @cards.each do |card|
           new_cards.push(card) if card[key] == value.to_i
         end
       end

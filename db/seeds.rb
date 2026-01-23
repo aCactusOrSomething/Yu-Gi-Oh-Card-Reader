@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
@@ -22,10 +24,10 @@ puts 'checking ygoprodeck database version...'
 version_res = HTTParty.get(version_url).parsed_response
 version_dom = version_res[0]['database_version']
 
-puts 'version: ' + version_dom
+puts "version: #{version_dom}"
 
 # we need to compare the big db's version to our own cache of it
-if !AccessDatum.all[0].nil? and AccessDatum.all[0].database_version >= version_dom.to_d
+if !AccessDatum.all[0].nil? && (AccessDatum.all[0].database_version >= version_dom.to_d)
   puts 'local DB is up to date. no update necessary.'
   return
 end
@@ -40,8 +42,8 @@ data = response['data']
 puts 'Data recieved. Seeding local database...'
 # this is for tracking progress.
 i = 0
-print i.to_s + '/' + data.length.to_s + "\s"
-STDOUT.flush
+print "#{i}/#{data.length} "
+$stdout.flush
 
 # we want to take each card_dom from the external database, and copy (or update) the corresponding card_sub in our database.
 data.each do |card_dom|
@@ -151,15 +153,15 @@ data.each do |card_dom|
   card_sub.art_url = if card_dom.key?('card_images')
                        card_dom['card_images'][0]['image_url_cropped']
                      else
-                       'https://images.ygoprodeck.com/images/cards_cropped/' + card_sub.card_id + '.jpg'
+                       "https://images.ygoprodeck.com/images/cards_cropped/#{card_sub.card_id}.jpg"
                      end
 
   card_sub.save!
 
   i += 1
   print "\r"
-  print i.to_s + '/' + data.length.to_s + "\s"
-  STDOUT.flush
+  print "#{i}/#{data.length} "
+  $stdout.flush
 end
 print "\nall data converted.\n"
 
