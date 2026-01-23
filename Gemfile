@@ -89,3 +89,8 @@ gem 'httparty'
 # image storage
 gem 'aws-sdk-s3', '~> 1'
 gem "openssl", "3.3.1"
+
+# audits
+gem 'bundler-audit'
+gem 'brakeman'
+gem 'rubocop'
