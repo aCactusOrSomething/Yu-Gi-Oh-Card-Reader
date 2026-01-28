@@ -33,7 +33,11 @@ class CardsController < ApplicationController
     # check to see if the card has an image
     unless @card.art.attached?
       # if not, attempt to download the image
-      @card.attach_file(@card.art_url, :art, @card.card_id.to_s)
+      begin 
+        @card.attach_file(@card.art_url, :art, @card.card_id.to_s)
+        rescue OpenURI::HTTPError => e
+          puts "No image found."
+      end
     end
     # render should go through EVEN IF the image download fails
     render :show
