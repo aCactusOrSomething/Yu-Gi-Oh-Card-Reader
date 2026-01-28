@@ -1,31 +1,34 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: cards
 #
-#  id              :bigint           not null
-#  art_url         :string
-#  atk             :integer
-#  card_attribute  :string
-#  card_type       :string
-#  def             :integer
-#  desc            :string
-#  frameType       :string
-#  level           :integer
-#  linkmarkers     :string
-#  linkval         :integer
+#  id              :integer          not null
+#  card_id         :integer          primary key
 #  name            :string
-#  name_searchable :string
+#  card_type       :string
+#  frameType       :string
+#  desc            :string
+#  atk             :integer
+#  def             :integer
 #  race            :string
+#  card_attribute  :string
 #  scale           :integer
+#  linkval         :integer
+#  linkmarkers     :string
+#  level           :integer
+#  name_searchable :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  card_id         :integer          primary key
+#  art_url         :string
 #
 # Indexes
 #
 #  index_cards_on_card_id  (card_id) UNIQUE
 #
-require "test_helper"
+
+require 'test_helper'
 
 class CardTest < ActiveSupport::TestCase
   # test "the truth" do

@@ -1,31 +1,29 @@
-class CardsController < ApplicationController
+# frozen_string_literal: true
 
+# controls accessing both individual card pages and the search tool (displaying a filtered list of cards).
+class CardsController < ApplicationController
   def index
     @cards = Card.all
     @term = params[:name_searchable]
 
     params.each do |key, value|
-      if not value == nil and not key == "commit" and not key == "controller" and not key == "action" and not value == 0 and not value == ''
-        new_cards = []
-        type = Card.column_for_attribute(key).type
-        puts "#{key} is #{type.to_s}"
-        if type.to_s == "string"
-          clean_term =  value.upcase.gsub(/[^\x00-\x7F]/, ' ')
-          for card in @cards
-            clean_target = card[key].upcase.gsub(/[^\x00-\x7F]/, ' ')
-            if clean_target.include? clean_term
-              new_cards.push(card)
-            end
-          end
-        elsif type.to_s == "integer"
-          for card in @cards
-            if card[key] == value.to_i
-              new_cards.push(card)
-            end
-          end
+      next unless is_exempt(value, key)
+
+      new_cards = []
+      type = Card.column_for_attribute(key).type
+      puts "#{key} is #{type}"
+      if type.to_s == 'string'
+        clean_term =  value.upcase.gsub(/[^\x00-\x7F]/, ' ')
+        @cards.each do |card|
+          clean_target = card[key].upcase.gsub(/[^\x00-\x7F]/, ' ')
+          new_cards.push(card) if clean_target.include? clean_term
         end
-        @cards = new_cards
+      elsif type.to_s == 'integer'
+        @cards.each do |card|
+          new_cards.push(card) if card[key] == value.to_i
+        end
       end
+      @cards = new_cards
     end
     render :index
   end
@@ -33,12 +31,21 @@ class CardsController < ApplicationController
   def show
     @card = Card.find(params[:card_id])
     # check to see if the card has an image
-    if not @card.art.attached?
+    unless @card.art.attached?
       # if not, attempt to download the image
-      @card.attach_file(@card.art_url, :art, @card.card_id.to_s)
+      begin 
+        @card.attach_file(@card.art_url, :art, @card.card_id.to_s)
+        rescue OpenURI::HTTPError => e
+          puts "No image found."
+      end
     end
     # render should go through EVEN IF the image download fails
     render :show
   end
-  
+
+  private
+
+  def is_exempt(value, key)
+    !value.nil? && (key != 'commit') && (key != 'controller') && (key != 'action') && (value != 0) && (value != '')
+  end
 end

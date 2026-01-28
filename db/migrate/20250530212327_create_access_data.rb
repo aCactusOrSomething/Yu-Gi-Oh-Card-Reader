@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAccessData < ActiveRecord::Migration[7.1]
   def change
     create_table :access_data do |t|
