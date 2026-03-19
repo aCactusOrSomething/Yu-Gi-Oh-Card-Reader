@@ -272,6 +272,17 @@ input[type=number] {
   color: black;
 }
 
+.frametype-xyz_pendulum {
+  background: linear-gradient(#000000, #006363);
+  color: white;
+}
+
+// i doubt these will ever exist. but you never know!
+.frametype-link_pendulum {
+  background: linear-gradient(#115C88, #006363);
+  color: white;
+}
+
 .frametype-spell {
   background-color: #006363;
   color: white;
@@ -284,6 +295,11 @@ input[type=number] {
 
 .frametype-token {
   background-color: #828e85;
+  color: black;
+}
+
+.frametype-skill {
+  background-color: #01A0DF;
   color: black;
 }
 
