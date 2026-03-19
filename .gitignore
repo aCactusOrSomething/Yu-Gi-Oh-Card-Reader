@@ -36,3 +36,6 @@
 
 # Ignore personal notes.
 notes.md
+
+# ignore stuff from my code editor.
+/.vscode
