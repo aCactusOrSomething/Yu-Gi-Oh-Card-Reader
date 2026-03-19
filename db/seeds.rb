@@ -157,14 +157,14 @@ data.each do |card_dom|
                      end
 
   # banlist information
-  card_sub.tgc_ban = if card_dom.key?('banlist_info') and card_dom['banlist_info'].key?('ban_tgc')
-                        card_dom['banlist_info']['ban_tgc']
+  card_sub.tcg_ban = if card_dom.key?('banlist_info') and card_dom['banlist_info'].key?('ban_tcg')
+                        card_dom['banlist_info']['ban_tcg']
                      else
                         'Unlimited'
                      end
 
-  card_sub.ogc_ban = if card_dom.key?('banlist_info') and card_dom['banlist_info'].key?('ban_ogc')
-                        card_dom['banlist_info']['ban_ogc']
+  card_sub.ocg_ban = if card_dom.key?('banlist_info') and card_dom['banlist_info'].key?('ban_ocg')
+                        card_dom['banlist_info']['ban_ocg']
                      else
                         'Unlimited'
                      end
@@ -175,14 +175,14 @@ data.each do |card_dom|
                               0
                             end
 
-  card_sub.tgc_format = if card_dom.key?('misc_info') and card_dom['misc_info'][0].key?('formats')
-                          card_dom['misc_info'][0]['formats'].include? "TGC"
+  card_sub.tcg_format = if card_dom.key?('misc_info') and card_dom['misc_info'][0].key?('formats')
+                          card_dom['misc_info'][0]['formats'].include? "TCG"
                         else
                           false
                         end
   
-    card_sub.ogc_format = if card_dom.key?('misc_info') and card_dom['misc_info'][0].key?('formats')
-                          card_dom['misc_info'][0]['formats'].include? "OGC"
+    card_sub.ocg_format = if card_dom.key?('misc_info') and card_dom['misc_info'][0].key?('formats')
+                          card_dom['misc_info'][0]['formats'].include? "OCG"
                         else
                           false
                         end

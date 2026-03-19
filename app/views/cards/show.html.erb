@@ -135,8 +135,12 @@
 </article>
 
 <article id="baninfo">
-  Banlist Info (WIP):
-  <p>genesys points: <%= @card.genesys_points %></p>
+  Banlist Info:
+  <ul>
+  <li>TGC: <%= @card.tcg_ban %></li>
+  <li>OGC: <%= @card.ocg_ban %></li>
+  <li>genesys points: <%= @card.genesys_points %></li>
+  </ul>
 </article>
 
 <article id="keywords">

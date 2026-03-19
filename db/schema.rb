@@ -64,12 +64,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_19_180604) do
     t.integer "linkval"
     t.string "name"
     t.string "name_searchable"
-    t.string "ogc_ban"
-    t.boolean "ogc_format"
+    t.string "ocg_ban"
+    t.boolean "ocg_format"
     t.string "race"
     t.integer "scale"
-    t.string "tgc_ban"
-    t.boolean "tgc_format"
+    t.string "tcg_ban"
+    t.boolean "tcg_format"
     t.datetime "updated_at", null: false
     t.index ["card_id"], name: "index_cards_on_card_id", unique: true
   end

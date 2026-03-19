@@ -20,11 +20,11 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  art_url         :string
-#  tgc_ban         :string
-#  ogc_ban         :string
+#  tcg_ban         :string
+#  ocg_ban         :string
 #  genesys_points  :integer
-#  tgc_format      :boolean
-#  ogc_format      :boolean
+#  tcg_format      :boolean
+#  ocg_format      :boolean
 #
 # Indexes
 #
