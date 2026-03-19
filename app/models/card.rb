@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: cards
@@ -22,6 +21,11 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  art_url         :string
+#  tcg_ban         :string
+#  ocg_ban         :string
+#  genesys_points  :integer
+#  tcg_format      :boolean
+#  ocg_format      :boolean
 #
 # Indexes
 #

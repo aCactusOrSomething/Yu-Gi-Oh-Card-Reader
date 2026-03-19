@@ -17,7 +17,7 @@ require 'httparty'
 # but the guide advises against doing this specifically, and instead recommends storing all data locally once pulled.
 
 version_url = 'https://db.ygoprodeck.com/api/v7/checkDBVer.php'
-cardinfo_url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php'
+cardinfo_url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?format=genesys&misc=yes'
 
 # first, we should get the database version.
 puts 'checking ygoprodeck database version...'
@@ -155,6 +155,37 @@ data.each do |card_dom|
                      else
                        "https://images.ygoprodeck.com/images/cards_cropped/#{card_sub.card_id}.jpg"
                      end
+
+  # banlist information
+  card_sub.tcg_ban = if card_dom.key?('banlist_info') and card_dom['banlist_info'].key?('ban_tcg')
+                        card_dom['banlist_info']['ban_tcg']
+                     else
+                        'Unlimited'
+                     end
+
+  card_sub.ocg_ban = if card_dom.key?('banlist_info') and card_dom['banlist_info'].key?('ban_ocg')
+                        card_dom['banlist_info']['ban_ocg']
+                     else
+                        'Unlimited'
+                     end
+  
+  card_sub.genesys_points = if card_dom.key?('misc_info') and card_dom['misc_info'][0].key?('genesys_points')
+                              card_dom['misc_info'][0]['genesys_points']
+                            else
+                              0
+                            end
+
+  card_sub.tcg_format = if card_dom.key?('misc_info') and card_dom['misc_info'][0].key?('formats')
+                          card_dom['misc_info'][0]['formats'].include? "TCG"
+                        else
+                          false
+                        end
+  
+    card_sub.ocg_format = if card_dom.key?('misc_info') and card_dom['misc_info'][0].key?('formats')
+                          card_dom['misc_info'][0]['formats'].include? "OCG"
+                        else
+                          false
+                        end
 
   card_sub.save!
 
